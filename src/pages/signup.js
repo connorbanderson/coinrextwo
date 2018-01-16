@@ -29,15 +29,16 @@ class Sigunup extends Component {
 
   render() {
     return (
-      <div className="signUpPage">
+      <div className="signUpPage text-center">
         <div className='signupWrapper'>
-          <h1> Signup Page </h1>
-          <Input onChange={(e)=>{this.setState({email: e.target.value})}} placeholder="email" />
-          <Input onChange={(e)=>{this.setState({password: e.target.value})}} type='password' placeholder="password" />
-          <div>{this.state.error.message}</div>
-          <Button onClick={()=>{this.createNewEmailUser()}}>Sign Up</Button>
+          <h1 className='m20'> Sign up </h1>
+          <Input className='m10' onChange={(e)=>{this.setState({email: e.target.value})}} placeholder="email" />
+          <Input className='m10' onChange={(e)=>{this.setState({password: e.target.value})}} type='password' placeholder="password" />
+          <small className='text-warning block'>{this.state.error.message}</small>
+          <Button className='mt20' onClick={()=>{this.createNewEmailUser()}}>Sign Up</Button>
           <Link to='/login'>
-            <Button>Already Have An Account? Login</Button>
+            <label  className='mt10 block'><small> Already Have An Account?</small></label>
+            <Button> Login</Button>
           </Link>
         </div>
       </div>

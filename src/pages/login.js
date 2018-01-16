@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { firebaseApp } from '../firebase'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
+import Topbar from '../components/topBar.js'
 
 class Login extends Component {
 
@@ -34,15 +35,19 @@ class Login extends Component {
       )
     } else {
       return (
-        <div className="LoginPage">
+        <div className="LoginPage text-center">
+          <Topbar/>
           <div className='loginWrapper'>
-            <h1> Login Page </h1>
-            <Input onPressEnter={()=>{this.loginUser()}} onChange={(e)=>{this.setState({email: e.target.value})}} placeholder="email" />
-            <Input onPressEnter={()=>{this.loginUser()}} onChange={(e)=>{this.setState({password: e.target.value})}} type='password' placeholder="password" />
-            <Button onClick={()=>{this.loginUser()}}>Log In</Button>
-            <div>{this.state.error.message}</div>
+            <h1 className='m20'> Login </h1>
+            <div className='block'>
+              <Input className='m10' eonPressEnter={()=>{this.loginUser()}} onChange={(e)=>{this.setState({email: e.target.value})}} placeholder="email" required />
+              <Input className='m10' onPressEnter={()=>{this.loginUser()}} onChange={(e)=>{this.setState({password: e.target.value})}} type='password' placeholder="password" required/>
+            </div>
+            <small className='text-warning block'>{this.state.error.message}</small>
+            <Button className='mt20' onClick={()=>{this.loginUser()}}>Log In</Button>
             <Link to='/signup'>
-              <Button>Don't Have an Account? Sign Up</Button>
+              <label className='block mt10'><small>Don't Have an Account?</small></label>
+              <Button>Sign Up</Button>
             </Link>
           </div>
         </div>

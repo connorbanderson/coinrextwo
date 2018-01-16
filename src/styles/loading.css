@@ -12,8 +12,13 @@
       width: 50%;
       max-height: 80%; }
     .fakeBody .loadingScreen h1 {
-      font-size: 10vw;
-      color: black; }
+      position: absolute;
+      display: block;
+      font-family: 'Text Me One', sans-serif;
+      font-size: 70px;
+      color: black;
+      bottom: 20%;
+      right: 30%; }
 
 @keyframes fadeOut {
   0% {
