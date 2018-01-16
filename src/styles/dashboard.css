@@ -1,0 +1,147 @@
+.dashboardPage {
+  height: 100vh;
+  width: 100%;
+  min-width: 320px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  background: white; }
+  .dashboardPage .logoutButton {
+    position: absolute;
+    top: 12px;
+    right: 10px;
+    z-index: 999; }
+  .dashboardPage .dashboardBody {
+    position: absolute;
+    top: 104px;
+    left: 0px;
+    height: calc(100vh - 104px);
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow-x: hidden;
+    overflow-y: auto; }
+
+.addCard {
+  font-family: 'Source Sans Pro', sans-serif;
+  position: relative;
+  width: 300px;
+  height: 250px;
+  border-radius: 2px;
+  border-width: 1.2px;
+  border-color: #e8e8e8;
+  border-style: dashed;
+  margin: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: column;
+  background-color: white; }
+  .addCard .cardSelect {
+    position: absolute;
+    top: 15px;
+    width: 180px; }
+  .addCard .innerDiv {
+    margin-bottom: 10px;
+    padding-left: 8px;
+    padding-right: 8px;
+    width: 100%; }
+  .addCard .addButton {
+    margin-bottom: 10px; }
+
+.coinCard {
+  font-family: 'Source Sans Pro', sans-serif;
+  position: relative;
+  width: 300px;
+  height: 150px;
+  border-radius: 2px;
+  border-width: 1px;
+  border-color: #e8e8e8;
+  border-style: solid;
+  margin: 15px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  flex-direction: row;
+  animation: fadeIn .5s ease-in forwards;
+  background-color: white; }
+  .coinCard h2, .coinCard h3 {
+    width: 100%;
+    text-align: center; }
+  .coinCard .coinName {
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 10px;
+    font-size: 25px; }
+  .coinCard .valueWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 90px;
+    width: 145px;
+    margin-left: 3px;
+    margin-right: 3px; }
+    .coinCard .valueWrapper h2 {
+      font-size: 22px; }
+    .coinCard .valueWrapper h3 {
+      font-size: 30px; }
+  .coinCard .fa-times {
+    z-index: 10;
+    position: absolute;
+    top: 3px;
+    right: 9px;
+    font-size: 20px;
+    cursor: pointer;
+    -webkit-animation: turnBlack .5s -1s ease-in-out forwards;
+    animation: turnBlack .5s -1s ease-in-out forwards; }
+    .coinCard .fa-times:hover {
+      animation: turnRed .4s ease-in-out forwards; }
+
+.coinList {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-content: flex-start;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap; }
+
+.dashboardComponent {
+  position: absolute;
+  top: 104px;
+  left: 0px;
+  height: calc(100vh - 104px);
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow-x: hidden;
+  overflow-y: auto; }
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@keyframes turnRed {
+  0% {
+    color: black; }
+  100% {
+    color: #E53935; } }
+
+@keyframes turnBlack {
+  0% {
+    color: #E53935; }
+  100% {
+    color: black; } }

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 770 535" style="enable-background:new 0 0 770 535;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#5E35B1;}
+	.st1{fill:#7E57C2;}
+	.st2{fill:#B39DDB;}
+	.st3{fill:#311B92;}
+	.st4{fill:#9575CD;}
+	.st5{fill:#4527A0;}
+	.st6{fill:#512DA8;}
+	.st7{fill:#D1C4E9;}
+
+  .poly {
+		 -webkit-animation: faded 5s ease-in infinite;
+		 -o-animation: faded 5s ease-in infinite;
+		 -mox-animation: faded 5s ease-in infinite;
+     animation: faded 5s linear forwards infinite;
+		 opacity: 1;
+		}
+
+		.poly1{ animation-delay: 0.1s; }
+		.poly2{ animation-delay: 0.2s; }
+		.poly3{ animation-delay: 0.3s; }
+		.poly4{ animation-delay: 0.4s; }
+		.poly5{ animation-delay: 0.5s; }
+		.poly6{ animation-delay: 0.6s; }
+		.poly7{ animation-delay: 0.7s; }
+		.poly8{ animation-delay: 0.8s; }
+		.poly9{ animation-delay: 0.9s; }
+		.poly10{ animation-delay: 1.0s; }
+		.poly11{ animation-delay: 1.1s; }
+		.poly12{ animation-delay: 1.2s; }
+		.poly13{ animation-delay: 1.3s; }
+		.poly14{ animation-delay: 1.4s; }
+		.poly15{ animation-delay: 1.5s; }
+		.poly16{ animation-delay: 1.6s; }
+		.poly17{ animation-delay: 1.7s; }
+		.poly18{ animation-delay: 1.8s; }
+		.poly19{ animation-delay: 1.9s; }
+		.poly20{ animation-delay: 2.0s; }
+		.poly21{ animation-delay: 2.1s; }
+		.poly22{ animation-delay: 2.2s; }
+		.poly23{ animation-delay: 2.3s; }
+		.poly24{ animation-delay: 2.4s; }
+		.poly25{ animation-delay: 2.5s; }
+		.poly26{ animation-delay: 2.6s; }
+		.poly27{ animation-delay: 2.7s; }
+		.poly28{ animation-delay: 2.8s; }
+		.poly29{ animation-delay: 2.9s; }
+		.poly30{ animation-delay: 3s; }
+		.poly31{ animation-delay: 3.1s; }
+		.poly32{ animation-delay: 3.2s; }
+		.poly33{ animation-delay: 3.3s; }
+		.poly34{ animation-delay: 3.4s; }
+		.poly35{ animation-delay: 3.5s; }
+		.poly36{ animation-delay: 3.6s; }
+		.poly37{ animation-delay: 3.7s; }
+		.poly38{ animation-delay: 3.8s; }
+		.poly39{ animation-delay: 3.9s; }
+		.poly40{ animation-delay: 4.0s; }
+		.poly41{ animation-delay: 4.1s; }
+		.poly42{ animation-delay: 4.2s; }
+		.poly43{ animation-delay: 4.3s; }
+		.poly44{ animation-delay: 4.4s; }
+		.poly45{ animation-delay: 4.5s; }
+		.poly46{ animation-delay: 4.6s; }
+		.poly47{ animation-delay: 4.7s; }
+
+    @-webkit-keyframes faded{
+      0% {
+        opacity: 1;
+      }
+      2.5% {
+        opacity: 0;
+      }
+      5% {
+        opacity: 0;
+      }
+      7.5% {
+        opacity: 1;
+      }
+    }
+
+    @-webkit-keyframes fadeInPauseFadeOut{
+      0% {
+        opacity: 0;
+      }
+      40% {
+        opacity: 1;
+      }
+      60% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+
+
+</style>
+	<polygon class="st0 poly poly1" points="340.5,112.5 457,136 413.5,83.5 	"/>
+	<polygon class="st1 poly poly2" points="77,262.3 161.5,247.4 105.9,242.2 	"/>
+	<polygon class="st2 poly poly3" points="571.9,158.8 542.8,153 539,161.7 	"/>
+	<polygon class="st3 poly poly4" points="201.5,370.5 166.5,447.5 228.5,398.5 283.5,324.5 	"/>
+	<polygon class="st0 poly poly5" points="228.5,398.5 269.5,394.5 292.5,429.5 305.5,393.5 283.5,324.5 	"/>
+	<polygon class="st4 poly poly6" points="384.8,175.5 383.5,174.5 383.4,174.4 380.5,175.9 287.5,225.2 417.8,202.3 	"/>
+	<polygon class="st3 poly poly7" points="380.5,175.9 174.8,194.3 105.9,242.2 161.5,247.4 287.5,225.2 	"/>
+	<polygon class="st2 poly poly8" points="750.5,85.5 755.3,69.5 737.5,72.5 	"/>
+	<polygon class="st2 poly poly9" points="161.5,247.4 233,254.1 287.5,225.2 	"/>
+	<polygon class="st5 poly poly10" points="287.5,225.2 233,254.1 381.7,268 450.3,228.6 417.8,202.3 	"/>
+	<polygon class="st6 poly poly11" points="383.4,174.4 383.5,174.5 384.8,175.5 539,161.7 542.8,153 456.4,135.7 	"/>
+	<polygon class="st3 poly poly12" points="709.5,141.5 692.5,153.5 712.5,161.5 	"/>
+	<polygon class="st0 poly poly13" points="688.5,136.5 675.5,149.5 692.5,153.5 	"/>
+	<polygon class="st3 poly poly14" points="695.5,98.5 713.5,78.5 675.5,83.5 	"/>
+	<polygon class="st6 poly poly15" points="725.5,151.5 712.5,161.5 732.5,176.5 	"/>
+	<polygon class="st0 poly poly16" points="190.5,502.5 217.5,448.5 228.5,398.5 166.5,447.5 	"/>
+	<polygon class="st6 poly poly17" points="729.5,90.5 737.5,72.5 713.5,78.5 	"/>
+	<polygon class="st3 poly poly18" points="223.5,501.5 245.5,501.5 242.5,492.5 222.5,476.5 217.5,448.5 190.5,502.5 	"/>
+	<polygon class="st2 poly poly19" points="257.5,418.5 276.5,482.5 269.5,516.5 312.5,480.5 292.5,429.5 269.5,394.5 	"/>
+	<polygon class="st1 poly poly20" points="553.5,293.5 553.5,306.5 567.5,300.5 544.5,283.5 510,264 514,288 	"/>
+	<polygon class="st5 poly poly21" points="565.5,283.5 544.5,283.5 567.5,300.5 	"/>
+	<polygon class="st3 poly poly22" points="300.5,528.5 305.5,517.5 349.5,522.5 362.5,528.5 361.5,517.5 382.5,517.5 376.5,506.5 350.5,495.5, 312.5,480.5 269.5,516.5"/>
+	<polygon class="st2 poly poly23" points="161.5,247.4 77,262.3 69.5,267.5 194.5,274.5 233,254.1 	"/>
+	<polygon class="st6 poly poly24" points="494.1,263.9 514,288 510.1,264 527.6,219.2 616,167 530,182 	"/>
+	<polygon class="st2 poly poly25" points="381.7,268 450.5,274.5 451,274.5 474.5,269.5 494.5,264.5 450.3,228.6 	"/>
+	<polygon class="st7 poly poly26" points="450.3,228.6 494.5,264.5 529.8,182.9 	"/>
+	<polygon class="st1 poly poly27" points="542.8,153 578.2,71.1 456.4,135.7 	"/>
+	<polygon class="st7 poly poly28" points="248.5,294.5 283.5,324.5 319.8,303.6 	"/>
+	<polygon class="st5 poly poly29" points="283.5,324.5 305.5,393.5 338.5,371.5 344.5,342.5 365.5,309.5 319.8,303.6 	"/>
+	<polygon class="st1 poly poly30" points="740.5,20.5 677.5,18.5 579.2,70.6 675.5,83.5 713.5,78.5 737.5,72.5 755.3,69.5 759.5,55.5 	"/>
+	<polygon class="st1 poly poly31" points="381.7,268 233,254.1 194.5,274.5 248.5,294.5 319.8,303.6 	"/>
+	<polygon class="st0 poly poly32" points="539,161.7 530,182.5 615.5,167.5 571.9,158.8 	"/>
+	<polygon class="st4 poly poly33" points="615.5,167.5 705.5,198.5 729.5,183.5 732.5,176.5 712.5,161.5 692.5,153.5 675.5,149.5 571.9,158.8 	"/>
+	<polygon class="st4 poly poly34" points="319.8,303.6 365.5,309.5 450.5,274.5 381.7,268 	"/>
+	<polygon class="st7 poly poly35" points="516.5,83.5 478.5,97.5 413.5,83.5 456.5,135.5 	"/>
+	<polygon class="st5 poly poly36" points="564.5,29.5 516.5,83.5 454,137 578.2,71.1 578.5,70.5 	"/>
+	<polygon class="st5 poly poly37" points="7.5,274.5 36.5,328.5 112.5,357.5 44.5,319.5 29.5,282.5 69.5,267.5 77,262.3 	"/>
+	<polygon class="st0 poly poly38" points="578.9,70.8 578.5,70.5 578.2,71.1 542.8,153 571.9,158.8 675.5,149.5 	"/>
+	<polygon class="st6 poly poly39" points="675.5,83.5 579.2,70.6 578.5,70.5 578.9,70.8 675.5,149.5 662.5,114.5 	"/>
+	<polygon class="st3 poly poly40" points="579.2,70.6 677.5,18.5 636.5,6.5 615.5,17.5 564.5,29.5 578.5,70.5 	"/>
+	<polygon class="st7 poly poly41" points="105.9,242.2 13.5,233.5 7.5,274.5 77,262.3 	"/>
+	<polygon class="st6 poly poly42" points="174.8,194.3 38.5,206.5 13.5,233.5 105.9,242.2 	"/>
+	<polygon class="st5 poly poly43" points="292.5,112.5 260.5,122.5 198.5,146.5 123.5,173.5 38.5,206.5 174.8,194.3 	"/>
+	<polygon class="st3 poly poly44" points="456.4,135.7 340.5,112.5 292.5,112.5 383.4,174.4 	"/>
+	<polygon class="st0 poly poly45" points="380.5,175.9 383.4,174.4 292.5,112.5 174.8,194.3 	"/>
+	<polygon class="st4 poly poly46" points="450.3,228.6 529.8,182.9 530,182.5 417.8,202.3 	"/>
+	<polygon class="st3 poly poly47" points="417.8,202.3 530,182.5 539,161.7 384.8,175.5 	"/>
+
+</svg>

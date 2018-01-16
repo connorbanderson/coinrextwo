@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux'
-import { items, itemsHasErrored, itemsIsLoading } from './coins'
+import { coins } from './coins'
+import { user } from './user'
+import { liveData } from './liveData'
 
 export default combineReducers({
-  items,
-  itemsHasErrored,
-  itemsIsLoading
+  coins,
+  user,
+  liveData
 })

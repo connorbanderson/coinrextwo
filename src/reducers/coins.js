@@ -1,30 +1,16 @@
-/*  *******************************************
-    *********** REDUCERS **********************
-    ******************************************* */
+import { SET_COINS, LOG_OUT } from '../constants'
 
-  export function itemsHasErrored(state = false, action) {
-      switch (action.type) {
-          case 'ITEMS_HAS_ERRORED':
-              return action.hasErrored;
-          default:
-              return state;
-      }
-  }
+const nullCoins = []
 
-  export function itemsIsLoading(state = false, action) {
-      switch (action.type) {
-          case 'ITEMS_IS_LOADING':
-              return action.isLoading;
-          default:
-              return state;
-      }
+export function coins(state = coins, action){
+  switch (action.type) {
+    case SET_COINS:
+      console.log('Calling Set Coins Reducer', action.payload)
+      let coinList = action.payload
+      return coinList
+    case LOG_OUT:
+      return nullCoins
+    default:
+      return state
   }
-
-  export function items(state = [], action) {
-      switch (action.type) {
-          case 'ITEMS_FETCH_DATA_SUCCESS':
-              return action.items;
-          default:
-              return state;
-      }
-  }
+}

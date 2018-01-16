@@ -1,0 +1,437 @@
+.dashboardComponent {
+  position: absolute;
+  top: 0px;
+  min-height: calc(100vh - 104px);
+  width: 100%; }
+  .dashboardComponent .portfolioWrapper {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: auto;
+    padding-top: 12px; }
+    .dashboardComponent .portfolioWrapper .portfolio {
+      margin-left: 8px;
+      margin-right: 8px;
+      height: 50px;
+      width: 50px;
+      text-align: center;
+      animation: fadeIn .5s ease-in forwards;
+      margin-bottom: 20px; }
+      .dashboardComponent .portfolioWrapper .portfolio .image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        border-radius: 40%;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        cursor: pointer;
+        animation-delay: -1s;
+        animation: borderGrowLarger .5s ease-in forwards; }
+        .dashboardComponent .portfolioWrapper .portfolio .image:hover > h3 {
+          animation: fadeIn .8s forwards; }
+        .dashboardComponent .portfolioWrapper .portfolio .image h3 {
+          animation-delay: -1s;
+          animation: fadeOut .8s forwards;
+          font-family: 'Titillium Web', sans-serif;
+          font-size: 16px;
+          font-weight: 400;
+          text-align: center;
+          vertical-align: middle;
+          height: auto;
+          width: 100%;
+          margin: 0;
+          color: white;
+          line-height: 12px; }
+        .dashboardComponent .portfolioWrapper .portfolio .image:hover {
+          animation: borderGrowSmaller .5s ease-in forwards; }
+      .dashboardComponent .portfolioWrapper .portfolio .image1 {
+        background: url(https://i.imgur.com/Ca33VfA.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center; }
+      .dashboardComponent .portfolioWrapper .portfolio:hover > .image1 {
+        background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url(https://i.imgur.com/Ca33VfA.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center; }
+      .dashboardComponent .portfolioWrapper .portfolio .image2 {
+        background: url(https://i.imgur.com/NEitIUN.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center; }
+      .dashboardComponent .portfolioWrapper .portfolio:hover > .image2 {
+        background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url(https://i.imgur.com/NEitIUN.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center; }
+      .dashboardComponent .portfolioWrapper .portfolio .image3 {
+        background: url(https://i.imgur.com/Tfg1K23.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center; }
+      .dashboardComponent .portfolioWrapper .portfolio:hover > .image3 {
+        background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url(https://i.imgur.com/Tfg1K23.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center; }
+      .dashboardComponent .portfolioWrapper .portfolio .addPortfolio {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        border-radius: 50%;
+        cursor: pointer;
+        border-radius: 2px;
+        border-width: 2px;
+        border-color: #e8e8e8;
+        border-style: dashed;
+        animation-delay: -1s;
+        animation: borderGrowLargerV2 .5s ease-in forwards; }
+        .dashboardComponent .portfolioWrapper .portfolio .addPortfolio:hover {
+          animation: borderGrowSmallerV2 .5s ease-in forwards; }
+        .dashboardComponent .portfolioWrapper .portfolio .addPortfolio h3 {
+          text-align: center;
+          vertical-align: middle;
+          height: auto;
+          width: 100%;
+          margin: 0;
+          color: white;
+          line-height: 12px; }
+        .dashboardComponent .portfolioWrapper .portfolio .addPortfolio .plusIcon {
+          font-size: 30px; }
+
+.ant-modal-body {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: wrap; }
+
+.portfolioIcon {
+  margin: 8px;
+  height: 50px;
+  width: 50px;
+  animation: fadeIn .5s ease-in forwards; }
+  .portfolioIcon .image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    border-radius: 40%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+    animation-delay: -1s;
+    animation: borderGrowLarger .5s ease-in forwards; }
+    .portfolioIcon .image:hover {
+      animation: borderGrowSmaller .5s ease-in forwards; }
+  .portfolioIcon .checkMarkOn {
+    color: white;
+    font-size: 35px;
+    opacity: 0;
+    animation: fadeIn .4s ease-in forwards; }
+  .portfolioIcon .checkMarkOff {
+    opacity: 0;
+    color: white;
+    font-size: 35px; }
+  .portfolioIcon .image1 {
+    background: url(https://i.imgur.com/Ca33VfA.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center; }
+  .portfolioIcon .image2 {
+    background: url(https://i.imgur.com/NEitIUN.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center; }
+  .portfolioIcon .image3 {
+    background: url(https://i.imgur.com/Tfg1K23.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center; }
+  .portfolioIcon .image4 {
+    background: url(https://i.imgur.com/j7MDe6T.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center; }
+  .portfolioIcon .image5 {
+    background: url(https://i.imgur.com/IuRx2Wp.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center; }
+  .portfolioIcon .image6 {
+    background: url(https://i.imgur.com/i3B7TBr.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center; }
+  .portfolioIcon .image7 {
+    background: url(https://i.imgur.com/euwyBOB.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center; }
+  .portfolioIcon .image8 {
+    background: url(https://i.imgur.com/eNWeaok.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center; }
+  .portfolioIcon .image9 {
+    background: url(https://i.imgur.com/WP8rYx5.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center; }
+  .portfolioIcon .image10 {
+    background: url(https://i.imgur.com/fKd7syp.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center; }
+  .portfolioIcon .image11 {
+    background: url(https://i.imgur.com/EIGoGbR.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center; }
+  .portfolioIcon .image12 {
+    background: url(https://i.imgur.com/de3oSnK.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center; }
+  .portfolioIcon .image13 {
+    background: url(https://i.imgur.com/MpXWer7.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center; }
+  .portfolioIcon .image14 {
+    background: url(https://i.imgur.com/3PmsMmY.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center; }
+  .portfolioIcon .image15 {
+    background: url(https://i.imgur.com/pQI4yFl.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center; }
+  .portfolioIcon .image16 {
+    background: url(https://i.imgur.com/elqF1xh.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center; }
+  .portfolioIcon .image17 {
+    background: url(https://i.imgur.com/LytKU4m.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center; }
+  .portfolioIcon .image18 {
+    background: url(https://i.imgur.com/nY5hP9l.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center; }
+  .portfolioIcon .image19 {
+    background: url(https://i.imgur.com/wTGAcId.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center; }
+  .portfolioIcon .image20 {
+    background: url(https://i.imgur.com/EmegVL3.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center; }
+  .portfolioIcon .image21 {
+    background: url(https://i.imgur.com/IyshJgy.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center; }
+  .portfolioIcon .image21 {
+    background: url(https://i.imgur.com/Ge6T6Qd.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center; }
+  .portfolioIcon .image22 {
+    background: url(https://i.imgur.com/l1XtwC7.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center; }
+  .portfolioIcon .image23 {
+    background: url(https://i.imgur.com/w5EYyzw.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center; }
+  .portfolioIcon .gradient1 {
+    background: #ad5389;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #3c1053, #ad5389);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #3c1053, #ad5389);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
+  .portfolioIcon .gradient2 {
+    background: #40E0D0;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FF0080, #FF8C00, #40E0D0);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FF0080, #FF8C00, #40E0D0);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
+  .portfolioIcon .gradient3 {
+    background: #FC5C7D;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #6A82FB, #FC5C7D);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #6A82FB, #FC5C7D);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
+  .portfolioIcon .gradient4 {
+    background: #0f0c29;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
+  .portfolioIcon .gradient5 {
+    background: #800080;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ffc0cb, #800080);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ffc0cb, #800080);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
+  .portfolioIcon .gradient6 {
+    background: #00F260;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #0575E6, #00F260);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #0575E6, #00F260);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
+  .portfolioIcon .gradient7 {
+    background: #03001e;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #fdeff9, #ec38bc, #7303c0, #03001e);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #fdeff9, #ec38bc, #7303c0, #03001e);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
+  .portfolioIcon .gradient8 {
+    background: #7F00FF;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #E100FF, #7F00FF);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #E100FF, #7F00FF);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
+  .portfolioIcon .gradient9 {
+    background: #e1eec3;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #f05053, #e1eec3);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #f05053, #e1eec3);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
+  .portfolioIcon .gradient10 {
+    background: #007991;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #78ffd6, #007991);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #78ffd6, #007991);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
+  .portfolioIcon .gradient11 {
+    background: #00c3ff;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ffff1c, #00c3ff);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ffff1c, #00c3ff);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
+  .portfolioIcon .gradient12 {
+    background: #833ab4;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #fcb045, #fd1d1d, #833ab4);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #fcb045, #fd1d1d, #833ab4);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
+  .portfolioIcon .gradient13 {
+    background: #FF4E50;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #F9D423, #FF4E50);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #F9D423, #FF4E50);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
+  .portfolioIcon .gradient14 {
+    background: #606c88;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #3f4c6b, #606c88);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #3f4c6b, #606c88);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
+  .portfolioIcon .gradient15 {
+    background: #4b6cb7;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #182848, #4b6cb7);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #182848, #4b6cb7);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
+  .portfolioIcon .gradient16 {
+    background: #283048;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #859398, #283048);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #859398, #283048);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
+  .portfolioIcon .color1 {
+    background: #F44336; }
+  .portfolioIcon .color2 {
+    background: #F44336; }
+  .portfolioIcon .color3 {
+    background: #9C27B0; }
+  .portfolioIcon .color4 {
+    background: #673AB7; }
+  .portfolioIcon .color5 {
+    background: #3F51B5; }
+  .portfolioIcon .color6 {
+    background: #2196F3; }
+  .portfolioIcon .color7 {
+    background: #03A9F4; }
+  .portfolioIcon .color8 {
+    background: #00BCD4; }
+  .portfolioIcon .color9 {
+    background: #009688; }
+  .portfolioIcon .color10 {
+    background: #4CAF50; }
+  .portfolioIcon .color11 {
+    background: #FFEB3B; }
+  .portfolioIcon .color12 {
+    background: #CDDC39; }
+  .portfolioIcon .color13 {
+    background: #212121; }
+  .portfolioIcon .color14 {
+    background: #FF5722; }
+  .portfolioIcon .color15 {
+    background: #795548; }
+  .portfolioIcon .color16 {
+    background: #9E9E9E; }
+
+.addPortfolioModal h1 {
+  background-color: red;
+  width: 100%; }
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@keyframes borderGrowSmaller {
+  0% {
+    border-radius: 40%; }
+  100% {
+    border-radius: 30%; } }
+
+@keyframes borderGrowLarger {
+  0% {
+    border-radius: 30%; }
+  100% {
+    border-radius: 40%; } }
+
+@keyframes borderGrowSmallerV2 {
+  0% {
+    border-radius: 50%; }
+  100% {
+    border-radius: 30%; } }
+
+@keyframes borderGrowLargerV2 {
+  0% {
+    border-radius: 30%; }
+  100% {
+    border-radius: 50%; } }

@@ -1,0 +1,18 @@
+.topBar{
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 64px;
+  width: 100%;
+  border-bottom: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  h1{
+    position: absolute;
+    left: 50px;
+    font-size: 30px;
+    color: black;
+    margin: 0px;
+  }
+}

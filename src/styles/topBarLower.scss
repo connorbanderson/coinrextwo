@@ -1,0 +1,73 @@
+$darkGrey: #616161;
+$almostWhite: #FAFAFA;
+
+.topBarLower{
+  position: absolute;
+  top: 64px;
+  left: 0px;
+  width: 100%;
+  height: 40px;
+  border-bottom-color: rgb(232, 232, 232);
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  background-color: white;
+  z-index: 10;
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+  align-items: center;
+  .wrapper{
+    height: 100%;
+    width: auto;
+    display: flex;
+    flex-wrap: nowrap;
+    margin-left: 50px;
+    .item{
+      cursor: pointer;
+      text-align: center;
+      margin: 5px;
+      padding: 2px;
+      padding-left: 3px;
+      padding-right: 5px;
+      border-color: rgb(232, 232, 232);
+      border-style: solid;
+      border-width: 1px;
+      background-color: white;
+      color: black;
+      &:hover{
+        animation: buttonHover .5s ease forwards;
+      }
+    }
+    .itemActive{
+      cursor: pointer;
+      text-align: center;
+      margin: 5px;
+      padding: 2px;
+      padding-left: 3px;
+      padding-right: 5px;
+      border-color: rgb(232, 232, 232);
+      border-style: solid;
+      border-width: 1px;
+      background-color: $darkGrey;
+      color: $almostWhite;
+    }
+  }
+}
+
+@keyframes sidebarItemHover {
+  0%{width: calc(100% - 1px);}
+  100%{width: calc(100% + 2px);}
+}
+
+
+
+@keyframes buttonHover {
+  0%{
+    background-color: white;
+    color: black;
+  }
+  100%{
+    background-color: $darkGrey;
+    color: $almostWhite;
+  }
+}

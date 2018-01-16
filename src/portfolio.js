@@ -12,28 +12,18 @@ import Login from './pages/login'
 import Signup from './pages/signup'
 import Dashboard from './pages/dashboard'
 
-import Loading from './components/loading'
-
-
 import { logUser, logOut } from './actions'
 
 import reducer from './reducers/user'
 import { firebaseApp } from './firebase/index'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 import './styles/index.css'
 import 'antd/dist/antd.css'
 
 firebaseApp.auth().onAuthStateChanged(user => {
-  console.log('OnauthStateChange!!!!')
   if (user){
-    console.log('WE HAVE A USER!!', user);
-    const { email, uid } = user
-    const payload = {
-      email,
-      uid
-    }
-    store.dispatch(logUser(payload))
+    const { email } = user
+    store.dispatch(logUser(email))
   } else {
     store.dispatch(logOut())
   }
@@ -44,16 +34,13 @@ export default store
 
 ReactDOM.render(
   <Provider store={store}>
-    <MuiThemeProvider>
-      <HashRouter>
-        <Switch>
-          <Route exact path="/" component={Login} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/signup" component={Signup} />
-          <Route path="/dashboard" component={Dashboard} />
-          <Route path="/loading" component={Loading} />
-        </Switch>
-      </HashRouter>
-    </MuiThemeProvider>
+    <HashRouter>
+      <Switch>
+        <Route exact path="/" component={Landing} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/signup" component={Signup} />
+        <Route exact path="/dashboard" component={Dashboard} />
+      </Switch>
+    </HashRouter>
   </Provider>, document.getElementById('root'))
 registerServiceWorker()
