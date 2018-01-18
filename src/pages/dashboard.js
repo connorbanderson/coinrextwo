@@ -17,7 +17,7 @@ import Market from '../components/market'
 import MainDashboard from '../components/mainDashboard'
 
 
-import { firebaseApp } from '../firebase'
+import { firebaseApp, portfolioListner } from '../firebase'
 
 import { Select } from 'antd'
 const Option = Select.Option
@@ -117,7 +117,6 @@ class Dashboard extends Component {
       return (
         <div className="dashboardPage themeBackgroundOne">
           <TopBar logout={()=>this.signOut()}/>
-          <SideBar activeButton={this.props.location.pathname}/>
           <div className='dashboardBody'>
             <Switch>
               <Route exact path="/dashboard" component={MainDashboard} />
@@ -137,7 +136,8 @@ function mapStateToProps(state, ownProps){
   console.log('SPecific ID!?!?!', specificid)
   return {
     authed: isAuthed,
-    liveData: state.liveData
+    liveData: state.liveData,
+    user: state.user
   }
 }
 
@@ -149,3 +149,10 @@ const mapDispatchToProps = (dispatch) => {
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)
+
+
+/*
+
+<SideBar activeButton={this.props.location.pathname}/>
+
+*/

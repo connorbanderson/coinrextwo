@@ -1,4 +1,4 @@
-import { SIGNED_IN, LOG_OUT, SET_COINS, SET_LIVE_DATA } from '../constants'
+import { SIGNED_IN, LOG_OUT, SET_COINS, SET_LIVE_DATA, SET_PORTFOLIOS } from '../constants'
 
 const blankUser = {
   email: null,
@@ -32,6 +32,15 @@ export function setCoins(payload){
 export function setLiveData(payload){
   const action = {
     type: SET_LIVE_DATA,
+    payload
+  }
+  return action
+}
+
+export function setPortfolios(payload){
+  console.log('Calling Set portfolios', payload)
+  const action = {
+    type: SET_PORTFOLIOS,
     payload
   }
   return action

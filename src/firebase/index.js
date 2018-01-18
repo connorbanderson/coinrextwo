@@ -1,4 +1,5 @@
 import * as firebase from 'firebase'
+import { setPortfolios } from '../actions'
 
 const config = {
   apiKey: "AIzaSyBkA6YfYvSAcAxHXquCj0EsR87FRsZm48c",
@@ -26,6 +27,24 @@ export const addNewPortfolioToAccount = (key, value) => {
     .push(value, error => error ? reject(error) : resolve())
   })
 }
+
+
+export const portfolioListner = (key) => {
+  dbRef.ref(`${key}/portfolios`).on('value', snap => {
+    let coinDataArray = []
+    snap.forEach(coin => {
+      const coinObject = coin.val()
+      const serverKey = coin.key
+      coinDataArray.push({coinObject, serverKey})
+    })
+    setPortfolios(coinDataArray)
+  })
+}
+
+
+
+
+
 
 
 /*

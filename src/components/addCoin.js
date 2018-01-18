@@ -40,7 +40,8 @@ class addCoin extends Component {
         id,
         name: this.props.liveData[this.state.newCoinID].name,
         amountOwned: this.state.newCoinAmntOwned,
-        initialInvestment: this.state.newCoinInitialInvestment
+        initialInvestment: this.state.newCoinInitialInvestment,
+        symbol: this.props.liveData[this.state.newCoinID].symbol
       }
       addCoinToPortfolio(this.props.updateID, payload)
     }
@@ -70,6 +71,7 @@ class addCoin extends Component {
       <div className='addCoin'>
         <div className='addCard'>
           <Select
+            size='small'
             className='cardSelect'
             placeholder='Select a Crypto'
             onChange={(value) => {this.setState({newCoinID: value}) }}
@@ -80,13 +82,13 @@ class addCoin extends Component {
           </Select>
           <div className='innerDiv'>
             <h3>Amount Owned</h3>
-            <Input onPressEnter={()=>{this.addCoinHandler()}} onChange={(e)=>{this.setState({newCoinAmntOwned: e.target.value})}} placeholder="0" />
+            <Input size='small' onPressEnter={()=>{this.addCoinHandler()}} onChange={(e)=>{this.setState({newCoinAmntOwned: e.target.value})}} placeholder="0" />
           </div>
           <div className='innerDiv'>
             <h3>Initial Investment</h3>
-            <Input onPressEnter={()=>{this.addCoinHandler()}} onChange={(e)=>{this.setState({newCoinInitialInvestment: e.target.value})}} addonBefore="$" placeholder="0" />
+            <Input size='small'onPressEnter={()=>{this.addCoinHandler()}} onChange={(e)=>{this.setState({newCoinInitialInvestment: e.target.value})}} addonBefore="$" placeholder="0" />
           </div>
-          <Button className='addButton' onClick={()=>{this.addCoinHandler()}}>Add</Button>
+          <Button size='small' className='addButton' onClick={()=>{this.addCoinHandler()}}>Add</Button>
         </div>
       </div>
     )

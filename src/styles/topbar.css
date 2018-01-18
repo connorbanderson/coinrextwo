@@ -10,6 +10,7 @@
   z-index: 10;
   background-color: white; }
   .topBar h1 {
+    padding-left: 10px;
     font-family: 'Orbitron', sans-serif;
     font-size: 45px;
     color: black; }
@@ -18,3 +19,7 @@
     right: 100px;
     font-size: 25px;
     cursor: pointer; }
+  .topBar .headLogo {
+    height: 50px;
+    position: absolute;
+    left: 0px; }

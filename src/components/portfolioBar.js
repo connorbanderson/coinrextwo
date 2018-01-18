@@ -47,37 +47,21 @@ class coinList extends Component {
       coinDataArray.forEach(function(key, i){
         const serverKey = coinDataArray[i].serverKey
         const data = coinDataArray[i].coinObject
-        console.log('Data is...', data);
         const id = data.id
         const coin = thus.props.liveData[id]
-        const currentValue = `$${thus.round( data.amountOwned*coin.price_cad , 0)}`
+        const currentValue = thus.round( data.amountOwned*coin.price_cad , 0)
         const roi = thus.round( ((currentValue - data.initialInvestment) / data.initialInvestment)*100, 0)
-        const iconImage = {
-          backgroundImage: `url(https://files.coinmarketcap.com/static/img/coins/32x32/${id}.png)`,
-          height: '32px',
-          width: '32px'
-        }
-
-        let profit = thus.round(((data.amountOwned*coin.price_cad)-data.initialInvestment), 0)
-        let profitText = profit >= 0 ? <div className='profitGainText'> + ${profit} </div> :<div className='profitLossText'> - ${profit} </div>
         let coinTag = (
           <div key={key} className='coinCard'>
             <i onClick={()=>{thus.deleteCoin(serverKey)}} className="fa fa-times" aria-hidden="true"></i>
-            <div className='iconNameWrapper'>
-              <div style={iconImage} />
-              <div className='coinName'>{data.name}</div>
+            <h3 className='coinName'>{data.name}</h3>
+            <div className='valueWrapper'>
+              <h2> ROI </h2>
+              <h3 className='ROI'>{`${roi}%`}</h3>
             </div>
-            <div className='currentValue'>
-              <span>{currentValue}</span>
-              <span>{profitText}</span>
-            </div>
-            <div className='valueWrapperLeft'>
-              <h2 className='owned'> Owned </h2>
-              <Input className="ownedInput" defaultValue={data.amountOwned} placeholder={data.amountOwned} onBlur={(e)=>{console.log(e.target.value)}} addonAfter={<div>{data.symbol}</div>} />
-            </div>
-            <div className='valueWrapperRight'>
-              <h2 className='invested'> Invested </h2>
-              <Input className="investedInput" defaultValue={data.initialInvestment} placeholder={data.initialInvestment} onBlur={(e)=>{console.log(e.target.value)}} addonBefore={<div>$</div>} />
+            <div className='valueWrapper'>
+              <h2> Value </h2>
+              <h3 className='dollarValue'>{`$${currentValue}`}</h3>
             </div>
           </div>
         )
@@ -95,7 +79,7 @@ class coinList extends Component {
     return(
       <div className='coinList'>
         <AddCoin />
-        {this.coinListGenerator()}
+        {this.portfolioGenerator()}
       </div>
     )
   }
@@ -104,17 +88,14 @@ class coinList extends Component {
 
 function mapStateToProps(state){
   const updateID = state.user.uid
-  const coins = state.coins
   return {
-    updateID,
-    coins,
-    liveData: state.liveData
+    updateID
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-      setCoins: (payload) => dispatch(setCoins(payload))
+      setPortfolio: (payload) => dispatch(setPortfolio(payload))
     }
 }
 

@@ -1,15 +1,19 @@
 .dashboardComponent{
   position: absolute;
   top: 0px;
-  min-height: calc(100vh - 104px);
+  min-height: calc(100vh - 64px);
   width: 100%;
   .portfolioWrapper{
+    border-right-width: 1.2px;
+    border-right-color: rgb(232, 232, 232);
+    border-right-style: dashed;
     position: absolute;
+    padding-top: 10px;
     top: 0px;
     left: 0px;
     height: 100%;
-    width: auto;
-    padding-top: 12px;
+    width: 80px;
+    z-index: 2147483647 !important;
     .portfolio{
       margin-left: 8px;
       margin-right: 8px;
@@ -43,6 +47,9 @@
         width: 100%;
         border-radius: 40%;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      //box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 60px, rgba(0, 0, 0, 0.22) 0px 15px 20px;
+      // ACTIVE box-shadow: 0px 0px 20px 6px rgba(0,0,0,0.5);
+
         cursor: pointer;
         animation-delay: -1s;
         animation: borderGrowLarger .5s ease-in forwards;
@@ -50,37 +57,37 @@
           animation: borderGrowSmaller .5s ease-in forwards;
         }
       }
-      .image1{
+      .meme1{
         background: url(https://i.imgur.com/Ca33VfA.png);
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
       }
-      &:hover > .image1{
+      &:hover > .meme1{
         background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url(https://i.imgur.com/Ca33VfA.png);
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
       }
-      .image2{
+      .meme2{
         background: url(https://i.imgur.com/NEitIUN.png);
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
       }
-      &:hover > .image2{
+      &:hover > .meme2{
         background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url(https://i.imgur.com/NEitIUN.png);
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
       }
-      .image3{
+      .meme3{
         background: url(https://i.imgur.com/Tfg1K23.png);
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
       }
-      &:hover > .image3{
+      &:hover > .meme3{
         background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url(https://i.imgur.com/Tfg1K23.png);
         background-size: cover;
         background-repeat: no-repeat;
@@ -117,9 +124,16 @@
         }
       }
     }
-    .activePortfolio{
-    }
   }
+  .portfolioInnerPage{
+    position: absolute;
+    top: -5px;
+    left: 80px;
+    height: calc(100vh - 64px);
+    width: calc(100vw - 80px);
+
+  }
+
 }
 
   .ant-modal-body{
@@ -162,145 +176,145 @@
       color: white;
       font-size: 35px;
     }
-    .image1{
+    .meme1{
       background: url(https://i.imgur.com/Ca33VfA.png);
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
     }
-    .image2{
+    .meme2{
       background: url(https://i.imgur.com/NEitIUN.png);
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
     }
-    .image3{
+    .meme3{
       background: url(https://i.imgur.com/Tfg1K23.png);
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
     }
-    .image4{
+    .meme4{
       background: url(https://i.imgur.com/j7MDe6T.png);
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
     }
-    .image5{
+    .meme5{
       background: url(https://i.imgur.com/IuRx2Wp.png);
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
     }
-    .image6{
+    .meme6{
       background: url(https://i.imgur.com/i3B7TBr.png);
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
     }
-    .image7{
+    .meme7{
       background: url(https://i.imgur.com/euwyBOB.png);
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
     }
-    .image8{
+    .meme8{
       background: url(https://i.imgur.com/eNWeaok.png);
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
     }
-    .image9{
+    .meme9{
       background: url(https://i.imgur.com/WP8rYx5.png);  // 10 guy
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
     }
-    .image10{
+    .meme10{
       background: url(https://i.imgur.com/fKd7syp.png);  // badluck brian
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
     }
-    .image11{
+    .meme11{
       background: url(https://i.imgur.com/EIGoGbR.png); // yeahhhhh if you could
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
     }
-    .image12{
+    .meme12{
       background: url(https://i.imgur.com/de3oSnK.png);  // kermit
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
     }
-    .image13{
+    .meme13{
       background: url(https://i.imgur.com/MpXWer7.png); // notlikethis
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
     }
-    .image14{
+    .meme14{
       background: url(https://i.imgur.com/3PmsMmY.png); // thumbs up internet kid
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
     }
-    .image15{
+    .meme15{
       background: url(https://i.imgur.com/pQI4yFl.jpg);  // thinking
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
     }
-    .image16{
+    .meme16{
       background: url(https://i.imgur.com/elqF1xh.png); // 2 damn high
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
     }
-    .image17{
+    .meme17{
       background: url(https://i.imgur.com/LytKU4m.png);  // money money
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
     }
-    .image18{
+    .meme18{
       background: url(https://i.imgur.com/nY5hP9l.png);  // cramer
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
     }
-    .image19{
+    .meme19{
       background: url(https://i.imgur.com/wTGAcId.png);  // poauly d
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
     }
-    .image20{
+    .meme20{
       background: url(https://i.imgur.com/EmegVL3.png);  //fry
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
     }
-    .image21{
+    .meme21{
       background: url(https://i.imgur.com/IyshJgy.png);  // doge
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
     }
-    .image21{
+    .meme21{
       background: url(https://i.imgur.com/Ge6T6Qd.png);  // evilkermit
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
     }
-    .image22{
+    .meme22{
       background: url(https://i.imgur.com/l1XtwC7.png);  // firstdayinternet
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
     }
-    .image23{
+    .meme23{
       background: url(https://i.imgur.com/w5EYyzw.png);  // yodawg
       background-size: cover;
       background-repeat: no-repeat;
@@ -451,6 +465,304 @@
 
     }
   }
+
+  .meme1{
+    background: url(https://i.imgur.com/Ca33VfA.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  .meme2{
+    background: url(https://i.imgur.com/NEitIUN.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  .meme3{
+    background: url(https://i.imgur.com/Tfg1K23.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  .meme4{
+    background: url(https://i.imgur.com/j7MDe6T.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  .meme5{
+    background: url(https://i.imgur.com/IuRx2Wp.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  .meme6{
+    background: url(https://i.imgur.com/i3B7TBr.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  .meme7{
+    background: url(https://i.imgur.com/euwyBOB.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  .meme8{
+    background: url(https://i.imgur.com/eNWeaok.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  .meme9{
+    background: url(https://i.imgur.com/WP8rYx5.png);  // 10 guy
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  .meme10{
+    background: url(https://i.imgur.com/fKd7syp.png);  // badluck brian
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  .meme11{
+    background: url(https://i.imgur.com/EIGoGbR.png); // yeahhhhh if you could
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  .meme12{
+    background: url(https://i.imgur.com/de3oSnK.png);  // kermit
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  .meme13{
+    background: url(https://i.imgur.com/MpXWer7.png); // notlikethis
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  .meme14{
+    background: url(https://i.imgur.com/3PmsMmY.png); // thumbs up internet kid
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  .meme15{
+    background: url(https://i.imgur.com/pQI4yFl.jpg);  // thinking
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  .meme16{
+    background: url(https://i.imgur.com/elqF1xh.png); // 2 damn high
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  .meme17{
+    background: url(https://i.imgur.com/LytKU4m.png);  // money money
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  .meme18{
+    background: url(https://i.imgur.com/nY5hP9l.png);  // cramer
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  .meme19{
+    background: url(https://i.imgur.com/wTGAcId.png);  // poauly d
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  .meme20{
+    background: url(https://i.imgur.com/EmegVL3.png);  //fry
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  .meme21{
+    background: url(https://i.imgur.com/IyshJgy.png);  // doge
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  .meme21{
+    background: url(https://i.imgur.com/Ge6T6Qd.png);  // evilkermit
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  .meme22{
+    background: url(https://i.imgur.com/l1XtwC7.png);  // firstdayinternet
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  .meme23{
+    background: url(https://i.imgur.com/w5EYyzw.png);  // yodawg
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+
+
+
+
+
+
+  .gradient1{
+    background: #ad5389;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #3c1053, #ad5389);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #3c1053, #ad5389); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+  .gradient2{
+    background: #40E0D0;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FF0080, #FF8C00, #40E0D0);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FF0080, #FF8C00, #40E0D0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+  .gradient3{
+    background: #FC5C7D;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #6A82FB, #FC5C7D);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #6A82FB, #FC5C7D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+  .gradient4{
+    background: #0f0c29;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  }
+  .gradient5{
+    background: #800080;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ffc0cb, #800080);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ffc0cb, #800080); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+  .gradient6{
+    background: #00F260;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #0575E6, #00F260);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #0575E6, #00F260); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+  .gradient7{
+    background: #03001e;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #fdeff9, #ec38bc, #7303c0, #03001e);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #fdeff9, #ec38bc, #7303c0, #03001e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+  .gradient8{
+    background: #7F00FF;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #E100FF, #7F00FF);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #E100FF, #7F00FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+  .gradient9{
+    background: #e1eec3;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #f05053, #e1eec3);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #f05053, #e1eec3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+  .gradient10{
+    background: #007991;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #78ffd6, #007991);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #78ffd6, #007991); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+  .gradient11{
+    background: #00c3ff;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ffff1c, #00c3ff);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ffff1c, #00c3ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+  .gradient12{
+    background: #833ab4;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #fcb045, #fd1d1d, #833ab4);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #fcb045, #fd1d1d, #833ab4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+  .gradient13{
+    background: #FF4E50;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #F9D423, #FF4E50);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #F9D423, #FF4E50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+  .gradient14{
+    background: #606c88;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #3f4c6b, #606c88);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+  .gradient15{
+    background: #4b6cb7;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #182848, #4b6cb7);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #182848, #4b6cb7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+  .gradient16{
+    background: #283048;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #859398, #283048);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #859398, #283048); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+
+  .color1{
+    background: #F44336;
+  }
+  .color2{
+    background: #F44336;
+  }
+  .color3{
+    background: #9C27B0;
+  }
+  .color4{
+    background: #673AB7;
+  }
+  .color5{
+    background: #3F51B5;
+  }
+  .color6{
+    background: #2196F3;
+  }
+  .color7{
+    background: #03A9F4;
+  }
+  .color8{
+    background: #00BCD4;
+  }
+  .color9{
+    background: #009688;
+  }
+  .color10{
+    background: #4CAF50;
+  }
+  .color11{
+    background: #FFEB3B;
+  }
+  .color12{
+    background: #CDDC39;
+  }
+  .color13{
+    background: #212121;
+  }
+  .color14{
+    background: #FF5722;
+  }
+  .color15{
+    background: #795548;
+  }
+  .color16{
+    background: #9E9E9E;
+  }
+
+  // ACTIVE box-shadow: 0px 0px 20px 6px rgba(0,0,0,0.5);
+  .selectedPortfolio{
+    //box-shadow: 0px 0px 18px 9px rgba(49,27,146,0.7) !important;
+    padding-left: 10px;
+    margin-left: 10px;
+  }
+
+  .activeTag{
+    height: 40px;
+    width: 20px;
+    background-color: #673AB7;
+    position: absolute;
+    left: -10px;
+    border-radius: 30%;
+  }
+
 
 
 
