@@ -143,61 +143,73 @@ class portfolio extends Component {
       //     this.props.coins['ETH'].price*8.3)*1.25
       //   ), 0
       // )
-      console.log('JUST DANCE!!!', this.props);
-      return(
-        <div className='portfolioInnerPage'>
-          <Tabs defaultActiveKey="1">
-            <TabPane className='tab' tab={<span><Icon type="dashboard" />Dashboard</span>} key="0">
+      const totalValueDOM = ((portfolioValue == undefined) || (portfolioValue == null))  ? '' : portfolioValue.totalValue
+      const oneHourValueDOM = ((portfolioValue == undefined) || (portfolioValue == null))  ? '' : portfolioValue.oneHourValue
+      const oneHourPercentageDOM = ((portfolioValue == undefined) || (portfolioValue == null))  ? '' : portfolioValue.oneHourPercentage
+      const twentyFourHourValueDOM = ((portfolioValue == undefined) || (portfolioValue == null))  ? '' : portfolioValue.twentyFourHourValue
+      const twentyFourHourPercentageDOM = ((portfolioValue == undefined) || (portfolioValue == null))  ? '' : portfolioValue.twentyFourHourPercentage
+      const sevenDayValueDOM = ((portfolioValue == undefined) || (portfolioValue == null))  ? '' : portfolioValue.sevenDayValue
+      const sevenDayPercentageDOM = ((portfolioValue == undefined) || (portfolioValue == null))  ? '' : portfolioValue.sevenDayPercentage
+      if (portfolioData == undefined){
+        return(
+          <div></div>
+        )
+      } else {
+        return(
+          <div className='portfolioInnerPage'>
+            <Tabs defaultActiveKey="1">
+              <TabPane className='tab' tab={<span><Icon type="dashboard" />Dashboard</span>} key="0">
 
-              <div className='portfolioValueWrapper'>
-                <span className='mainValue'>${portfolioValue.totalValue}</span>
-                <div className='timeWrapper'>
-                  <div className='wrapper'>
-                    <div className='timeSpan'> 1H </div>
+                <div className='portfolioValueWrapper'>
+                  <span className='mainValue'>${totalValueDOM}</span>
+                  <div className='timeWrapper'>
+                    <div className='wrapper'>
+                      <div className='timeSpan'> 1H </div>
+                        <div className='valueWrapper'>
+                          <div className='value'> ${oneHourValueDOM} </div>
+                          <div className='value'> {oneHourPercentageDOM}% </div>
+                        </div>
+                    </div>
+                    <div className='wrapper'>
+                      <div className='timeSpan'> 24H </div>
+                        <div className='valueWrapper'>
+                          <div className='value'> ${twentyFourHourValueDOM} </div>
+                          <div className='value'> {twentyFourHourPercentageDOM}% </div>
+                        </div>
+                    </div>
+                    <div className='wrapper'>
+                      <div className='timeSpan'> 7D </div>
                       <div className='valueWrapper'>
-                        <div className='value'> ${portfolioValue.oneHourValue} </div>
-                        <div className='value'> {portfolioValue.oneHourPercentage}% </div>
+                        <div className='value'> ${sevenDayValueDOM} </div>
+                        <div className='value'> {sevenDayPercentageDOM}% </div>
                       </div>
-                  </div>
-                  <div className='wrapper'>
-                    <div className='timeSpan'> 24H </div>
-                      <div className='valueWrapper'>
-                        <div className='value'> ${portfolioValue.twentyFourHourValue} </div>
-                        <div className='value'> {portfolioValue.twentyFourHourPercentage}% </div>
-                      </div>
-                  </div>
-                  <div className='wrapper'>
-                    <div className='timeSpan'> 7D </div>
-                    <div className='valueWrapper'>
-                      <div className='value'> ${portfolioValue.sevenDayValue} </div>
-                      <div className='value'> {portfolioValue.sevenDayPercentage}% </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <BarChart width={graphWidth} height={graphHeight} data={portfolioData}>
-                <XAxis dataKey="name" style={{fontSize: '8px'}}/>
-                <YAxis/>
-                <CartesianGrid strokeDasharray="3 3"/>
-                <Tooltip/>
-                  <Bar dataKey="starting" stackId="a" fill="#212121" />
-                  <Bar dataKey="profit" stackId="a" >
-                    {
-                      portfolioData.map((entry, index) => {
-                        const color = entry.profit >= 0 ? '#8BC34A' : '#D50000'
-                        return <Cell fill={color} />;
-                      })
-                    }
-                  </Bar>
-              </BarChart>
-            </TabPane>
-            <TabPane className='tab' tab={<span><Icon type="edit" />Manage</span>} key="1">
-              <CoinList />
-            </TabPane>
-          </Tabs>
-        </div>
-      )
+                <BarChart width={graphWidth} height={graphHeight} data={portfolioData}>
+                  <XAxis dataKey="name" style={{fontSize: '8px'}}/>
+                  <YAxis/>
+                  <CartesianGrid strokeDasharray="3 3"/>
+                  <Tooltip/>
+                    <Bar dataKey="starting" stackId="a" fill="#212121" />
+                    <Bar dataKey="profit" stackId="a" >
+                      {
+                        portfolioData.map((entry, index) => {
+                          const color = entry.profit >= 0 ? '#8BC34A' : '#D50000'
+                          return <Cell fill={color} />;
+                        })
+                      }
+                    </Bar>
+                </BarChart>
+              </TabPane>
+              <TabPane className='tab' tab={<span><Icon type="edit" />Manage</span>} key="1">
+                <CoinList />
+              </TabPane>
+            </Tabs>
+          </div>
+        )
+      }
     }
   }
 }
