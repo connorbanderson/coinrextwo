@@ -10,8 +10,9 @@
   z-index: 10;
   background-color: white; }
   .topBar h1 {
+    text-transform: none !important;
+    font-family: 'Montserrat', sans-serif;
     padding-left: 10px;
-    font-family: 'Orbitron', sans-serif;
     font-size: 45px;
     color: black; }
   .topBar .fa-user-o {

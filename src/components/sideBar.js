@@ -13,10 +13,13 @@ class topBarLower extends Component {
     if (activeButton !== '/dashboard'){
       dashboardActive = false
     }
-    let dashboardButton = classNames({ 'item': true, 'itemActive': dashboardActive })
-    let marketButton = classNames({ 'item': true, 'itemActive': !dashboardActive })
+    let dashboardButton = classNames({ 'item': true, 'itemActive': dashboardActive },'p5')
+    let marketButton = classNames({ 'item': true, 'itemActive': !dashboardActive },'p5 mr10')
     return(
       <div className='topBarLower'>
+        <div className='msg'>
+          Hello, Username
+        </div>
         <div className='wrapper'>
           <Link to='/dashboard'>
             <div className={dashboardButton}>
