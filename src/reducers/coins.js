@@ -1,6 +1,6 @@
 import { SET_COINS, LOG_OUT } from '../constants'
 
-const nullCoins = []
+const nullCoins = null
 
 export function coins(state = coins, action){
   switch (action.type) {
