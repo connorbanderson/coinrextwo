@@ -1,7 +1,7 @@
 $darkGrey: #616161;
 $almostWhite: #FAFAFA;
 
-.topBarLower{
+.topBarLower {
   position: absolute;
   top: 64px;
   left: 0px;
@@ -16,13 +16,13 @@ $almostWhite: #FAFAFA;
   justify-content: flex-end;
   align-content: center;
   align-items: center;
-  .wrapper{
+  .wrapper {
     height: 100%;
     width: auto;
     display: flex;
     flex-wrap: nowrap;
     margin-left: 50px;
-    .item{
+    .item {
       cursor: pointer;
       text-align: center;
       margin: 5px;
@@ -34,11 +34,11 @@ $almostWhite: #FAFAFA;
       border-width: 1px;
       background-color: white;
       color: black;
-      &:hover{
+      &:hover {
         animation: buttonHover .5s ease forwards;
       }
     }
-    .itemActive{
+    .itemActive {
       cursor: pointer;
       text-align: center;
       margin: 5px;
@@ -53,6 +53,7 @@ $almostWhite: #FAFAFA;
     }
     ::selection {
       background: none !important;
+    }
   }
 }
 

@@ -78,7 +78,7 @@ class addCoin extends Component {
             onChange={(value) => {this.setState({newCoinID: value}) }}
             autoFocus={true}
             showSearch={true}
-            value={this.state.newCoinID}
+            // defaultValue={this.state.newCoinID}
           >
             {this.generateCoinOptionList()}
           </Select>
