@@ -12,10 +12,9 @@ class topBar extends Component {
   render(){
     return(
       <div className='topBar'>
-        <h1 className='mt10'> CoinREX </h1>
+        <h1> CoinREX </h1>
         <i className="fa fa-user-o" aria-hidden="true"></i>
         <Button onClick={()=>{this.props.logout()}} className='logoutButton'> Logout </Button>
-
       </div>
     )
   }

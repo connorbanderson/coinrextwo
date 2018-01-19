@@ -83,7 +83,7 @@ class mainDashboard extends Component {
         'image': true,
         [`gradient${i}`]: true
       })
-      let isSelected = this.state.newPortfolioTheme == `gradient${i}` ? true : false
+      let isSelected = this.state.newPortfolioTheme === `gradient${i}` ? true : false
       let portfolioCheckMark = classNames({
         'checkMarkOn': isSelected,
         'checkMarkOff': !isSelected
@@ -110,7 +110,7 @@ class mainDashboard extends Component {
         'image': true,
         [`color${i}`]: true
       })
-      let isSelected = this.state.newPortfolioTheme == `color${i}` ? true : false
+      let isSelected = this.state.newPortfolioTheme === `color${i}` ? true : false
       let portfolioCheckMark = classNames({
         'checkMarkOn': isSelected,
         'checkMarkOff': !isSelected
@@ -137,7 +137,7 @@ class mainDashboard extends Component {
         'image': true,
         [`image${i}`]: true
       })
-      let isSelected = this.state.newPortfolioTheme == `meme${i}` ? true : false
+      let isSelected = this.state.newPortfolioTheme === `meme${i}` ? true : false
       let portfolioCheckMark = classNames({
         'checkMarkOn': isSelected,
         'checkMarkOff': !isSelected
