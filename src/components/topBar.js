@@ -12,6 +12,7 @@ class topBar extends Component {
   render(){
     return(
       <div className='topBar'>
+        <img className='headLogo' src='/coinRexLogoHead2.svg' />
         <h1> CoinREX </h1>
         <i className="fa fa-user-o" aria-hidden="true"></i>
         <Button onClick={()=>{this.props.logout()}} className='logoutButton'> Logout </Button>

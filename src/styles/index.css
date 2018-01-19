@@ -126,15 +126,14 @@ div .ant-modal-header {
   .overlay .fa-exclamation-triangle {
     font-size: 30px; }
 
-.ant-tabs-tabpane {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  padding-bottom: 10px; }
-
 .themeBackgroundOne {
-  background: url("../assets/grey.png") repeat center center fixed; }
+  background: url("../assets/swirl.png") repeat center center fixed; }
+
+@keyframes borderFadeIn {
+  0% {
+    border: 0px !important; }
+  100% {
+    border: 1px !important; } }
 
 .ant-btn, a {
   font-family: 'Raleway', sans-serif;

@@ -40,9 +40,11 @@ class addCoin extends Component {
         id,
         name: this.props.liveData[this.state.newCoinID].name,
         amountOwned: this.state.newCoinAmntOwned,
-        initialInvestment: this.state.newCoinInitialInvestment
+        initialInvestment: this.state.newCoinInitialInvestment,
+        symbol: this.props.liveData[this.state.newCoinID].symbol
       }
-      addCoinToPortfolio(this.props.updateID, payload)
+      this.setState({newCoinAmntOwned: "", newCoinID: "", newCoinInitialInvestment: ""})
+      addCoinToPortfolio(this.props.updateID, this.props.selectedPortfolio, payload)
     }
   }
 
@@ -58,7 +60,7 @@ class addCoin extends Component {
       let data = liveData[key]
       let name = data.name
       let option = (
-        <Option key={key} value={data.id}> {name} </Option>
+        <Option key={i*.49} value={data.id}> {name} </Option>
       )
       optionList.push(option)
     })
@@ -70,23 +72,41 @@ class addCoin extends Component {
       <div className='addCoin'>
         <div className='addCard'>
           <Select
+            size='small'
             className='cardSelect'
             placeholder='Select a Crypto'
             onChange={(value) => {this.setState({newCoinID: value}) }}
             autoFocus={true}
             showSearch={true}
+            value={this.state.newCoinID}
           >
             {this.generateCoinOptionList()}
           </Select>
           <div className='innerDiv'>
             <h3>Amount Owned</h3>
-            <Input onPressEnter={()=>{this.addCoinHandler()}} onChange={(e)=>{this.setState({newCoinAmntOwned: e.target.value})}} placeholder="0" />
+            <Input size='small'
+              onPressEnter={()=>{this.addCoinHandler()}}
+              onChange={(e)=>{this.setState({newCoinAmntOwned: e.target.value})}}
+              type="number"
+              min="0.00"
+              max="999999999999"
+              placeholder="0"
+              value={this.state.newCoinAmntOwned} />
           </div>
           <div className='innerDiv'>
             <h3>Initial Investment</h3>
-            <Input onPressEnter={()=>{this.addCoinHandler()}} onChange={(e)=>{this.setState({newCoinInitialInvestment: e.target.value})}} addonBefore="$" placeholder="0" />
+            <Input
+              size='small'
+              onPressEnter={()=>{this.addCoinHandler()}}
+              onChange={(e)=>{this.setState({newCoinInitialInvestment: e.target.value})}}
+              addonBefore="$"
+              placeholder="0"
+              type="number"
+              min="0.00"
+              max="999999999999"
+              value={this.state.newCoinInitialInvestment} />
           </div>
-          <Button className='addButton' onClick={()=>{this.addCoinHandler()}}>Add</Button>
+          <Button size='small' className='addButton' onClick={()=>{this.addCoinHandler()}}>Add</Button>
         </div>
       </div>
     )
@@ -97,7 +117,8 @@ class addCoin extends Component {
 function mapStateToProps(state){
   return {
     updateID: state.user.uid,
-    liveData: state.liveData
+    liveData: state.liveData,
+    selectedPortfolio: state.selectedPortfolio
   }
 }
 

@@ -3,7 +3,11 @@ import { Input } from 'antd'
 import { addNewPortfolioToAccount } from '../firebase'
 import { connect } from 'react-redux'
 import classNames from 'classnames'
+import { portfolioListner, dbRef } from '../firebase'
 
+import { setPortfolios, setSelectedPortfolio, setCoins } from '../actions'
+
+import Portfolio from './portfolio'
 
 // Frontend Library Import(s)
 import { Select, Button, Icon, Modal, Tabs } from 'antd'
@@ -29,9 +33,10 @@ class mainDashboard extends Component {
       newCoinNameError: false,
       newCoinAmntOwnedError: false,
       newCoinInitialInvestmentError: false,
-      isNewPortfolioModalActive: true,
+      isNewPortfolioModalActive: false,
       newPortfolioTheme: null,
-      newPortfolioName: null
+      newPortfolioName: null,
+      activePortfolio: null
     }
   }
 
@@ -39,10 +44,50 @@ class mainDashboard extends Component {
 
   componentDidMount(){
     this.generateCoinOptionList()
-
-
-
+    dbRef.ref(`${this.props.updateID}/portfolios`).on('value', snap => {
+      let portfolioDataObject = {}
+      snap.forEach(portfolio => {
+        const portfolioObject = portfolio.val()
+        const serverKey = portfolio.key
+        portfolioDataObject[serverKey] = portfolioObject
+      })
+      this.props.setPortfolios(portfolioDataObject)
+    })
   }
+
+  getSelectedPortfolio = () => {
+    let thus = this
+    if (this.props.portfolios === null || this.props.portfolios === undefined) return
+    else {
+      const portfolios = this.props.portfolios
+      const keys = Object.keys(portfolios)
+      let activePortfolio = null
+      keys.forEach(function(key, i){
+         if (i === 0){
+           activePortfolio = key
+         }
+      })
+      this.props.setSelectedPortfolio(activePortfolio)
+      return activePortfolio
+    }
+  }
+
+  setInitialSelectedPortfolio = () => {
+    let thus = this
+    if (this.props.portfolios === null || this.props.portfolios === undefined) return
+    else {
+      const portfolios = this.props.portfolios
+      const keys = Object.keys(portfolios)
+      let activePortfolio = null
+      keys.forEach(function(key, i){
+         if (i === 0){
+           activePortfolio = key
+         }
+      })
+      this.setState({activePortfolio})
+    }
+  }
+
 
   generateCoinOptionList = () => {
     let liveData = this.props.liveData
@@ -74,6 +119,7 @@ class mainDashboard extends Component {
       coins
     }
     addNewPortfolioToAccount(this.props.updateID, payload)
+    this.setState({isNewPortfolioModalActive: false})
   }
 
   gradientGenerator = () => {
@@ -135,7 +181,7 @@ class mainDashboard extends Component {
     for (let i = 1; i <= 23; i++){
       let portfolioImage = classNames({
         'image': true,
-        [`image${i}`]: true
+        [`meme${i}`]: true
       })
       let isSelected = this.state.newPortfolioTheme === `meme${i}` ? true : false
       let portfolioCheckMark = classNames({
@@ -157,36 +203,78 @@ class mainDashboard extends Component {
     )
   }
 
+  portfolioGenerator = () => {
+    let thus = this
+    if (this.props.portfolios === null || this.props.portfolios === undefined) return
+    else {
+      const portfolios = this.props.portfolios
+      const keys = Object.keys(portfolios)
+      let portfolioList = []
+      keys.forEach(function(key, i){
+        const portfolio = portfolios[key]
+        const name = portfolio.name
+        let activePiece = null
+        let active = false
+        if (thus.props.selectedPortfolio === undefined || thus.props.selectedPortfolio === null){
+          let activeKey = thus.getSelectedPortfolio()
+          if (key == activeKey) {
+            active = true
+            activePiece = (
+              <div className='activeTag' />
+            )
+          }
+        }
+        else if (key == thus.props.selectedPortfolio) {
+          active = true
+          activePiece = (
+            <div className='activeTag' />
+          )
+        }
+        let portfolioImage = classNames({
+          'image': true,
+          'selectedPortfolio': active,
+          [`${portfolio.theme}`]: true
+        })
+
+        let portfolioJSX = (
+          <div className='portfolio activePortfolio'>
+            <div onClick={()=>{ {thus.props.setSelectedPortfolio(key)} {thus.getCoins(key)} }} className={portfolioImage}>
+              <h3>{name}</h3>
+                {activePiece}
+            </div>
+          </div>
+        )
+        portfolioList.push(portfolioJSX)
+      })
+      return portfolioList
+    }
+  }
+
+  getCoins = (newSelectedPortfolioKey) => {
+    dbRef.ref(`${this.props.updateID}/portfolios/${newSelectedPortfolioKey}/coins`).on('value', snap => {
+      let coinDataArray = []
+      snap.forEach(coin => {
+        const coinObject = coin.val()
+        console.log('COINLISTT - Snap looping Object....', coinObject);
+        const serverKey = coin.key
+        coinDataArray.push({coinObject, serverKey})
+      })
+      this.props.setCoins(coinDataArray)
+    })
+  }
+
+
   render(){
 
     return(
       <div className='dashboardComponent'>
         <div className='portfolioWrapper'>
-
-          <div className='portfolio activePortfolio'>
-            <div className='image image1'>
-              <h3>Main</h3>
-            </div>
-          </div>
-
-          <div className='portfolio activePortfolio'>
-            <div className='image image2'>
-              <h3>STI Dream</h3>
-            </div>
-          </div>
-
-          <div className='portfolio activePortfolio'>
-            <div className='image image3'>
-              <h3>Sujiya</h3>
-            </div>
-          </div>
-
+          {this.portfolioGenerator()}
           <div className='portfolio' onClick={()=>{this.toggleNewPortfolioModal()}}>
             <div className='addPortfolio'>
               <Icon className='plusIcon' type="plus" />
             </div>
           </div>
-
 
           <Modal
             className='addPortfolioModal'
@@ -214,17 +302,10 @@ class mainDashboard extends Component {
               {this.memeGenerator()}
             </TabPane>
           </Tabs>
-
-
-
-
-
         </Modal>
+      </div>
+      <Portfolio selected={this.state.activePortfolio} />
 
-
-
-
-        </div>
       </div>
     )
   }
@@ -233,8 +314,42 @@ class mainDashboard extends Component {
 function mapStateToProps(state){
   return {
     updateID: state.user.uid,
-    liveData: state.liveData
+    liveData: state.liveData,
+    portfolios: state.portfolios,
+    selectedPortfolio: state.selectedPortfolio
   }
 }
 
-export default connect(mapStateToProps, null)(mainDashboard)
+const mapDispatchToProps = (dispatch) => {
+    return {
+      setPortfolios: (payload) => dispatch(setPortfolios(payload)),
+      setSelectedPortfolio: (payload) => dispatch(setSelectedPortfolio(payload)),
+      setCoins: (payload) => dispatch(setCoins(payload))
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(mainDashboard)
+
+
+/*
+
+<div className='portfolio activePortfolio'>
+  <div className='image image1'>
+    <h3>Main</h3>
+  </div>
+</div>
+
+<div className='portfolio activePortfolio'>
+  <div className='image image2'>
+    <h3>STI Dream</h3>
+  </div>
+</div>
+
+<div className='portfolio activePortfolio'>
+  <div className='image image3'>
+    <h3>Sujiya</h3>
+  </div>
+</div>
+
+*/
