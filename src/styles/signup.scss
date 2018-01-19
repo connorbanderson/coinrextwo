@@ -11,9 +11,17 @@
   background: -webkit-linear-gradient(to right, #A6FFCB, #12D8FA, #1FA2FF);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #A6FFCB, #12D8FA, #1FA2FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   .signupWrapper{
-    background-color: white;
-    width: 80%;
-    max-width: 300px;
+    background-color: rgba(255,255,255,0.8);
+    border-radius: 5%;
+    padding: 70px;
     height: auto;
+
+    input {
+      max-width: 90%;
+    }
+
+    h1{
+      font-size: 40px;
+    }
   }
 }

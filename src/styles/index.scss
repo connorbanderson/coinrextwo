@@ -1,8 +1,126 @@
 body{
   overflow: hidden;
   min-width: 320px;
+  font-family: 'Roboto', sans-serif;
 }
 
+h1, h2, h3, h4, h5{
+  font-family: 'Encode Sans Semi Expanded', sans-serif;
+}
+
+.msg {
+  font-family: 'Text Me One', sans-serif;
+  font-size: 30px;
+}
+.ant-tabs-nav-scroll {
+  text-align: center;
+}
+h1{
+  text-transform: uppercase;
+}
+
+input {
+  font-family: 'Assistant', sans-serif !important;
+}
+
+::-webkit-input-placeholder {
+  text-transform: uppercase;
+}
+
+.p5 {
+  padding: 5px !important;
+}
+.p10 {
+  padding: 10px !important;
+}
+.p15 {
+  padding: 15px !important;
+}
+.p20 {
+  padding: 20px !important;
+}
+.p25 {
+  padding: 25px !important;
+}
+
+.m5 {
+  margin: 5px !important;
+}
+.m10 {
+  margin: 10px !important;
+}
+.m15 {
+  margin: 15px !important;
+}
+.m20 {
+  margin: 20px !important;
+}
+.m25 {
+  margin: 25px !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.pull-right {
+  float: right !important;
+}
+.pull-left {
+  float: left !important;
+}
+
+.mt10 {
+  margin-top: 10px !important;
+}
+.mt20 {
+  margin-top: 20px !important;
+}
+.pt5 {
+  padding-top: 5px !important;
+}
+.mr5 {
+  margin-right: 5px !important;
+}
+.mr10 {
+  margin-right: 10px !important;
+}
+.ml5 {
+  margin-left: 5px !important;
+}
+.ml10 {
+  margin-left: 10px !important;
+}
+.ml20 {
+  margin-left: 20px !important;
+}
+
+.text-warning {
+  color: red;
+}
+
+.text-muted{
+  color: gray;
+}
+
+.text-default{
+  color: dimgray;
+}
+
+.inline-block {
+  display: inline-block !important;
+}
+
+.inline-flex {
+  display: inline-flex !important;
+}
+.minw100 {
+  min-width: 100%;
+}
+div .ant-modal-header {
+  text-transform: uppercase;
+  font-family: 'Encode Sans Semi Expanded', sans-serif !important;
+}
   .overlay{
     display: flex;
     justify-content: center;
@@ -37,4 +155,13 @@ body{
   @keyframes borderFadeIn {
     0%{border: 0px !important;}
     100%{border: 1px !important;}
+  }
+
+  .ant-btn, a {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+  }
+
+  .block {
+    display: block !important;
   }

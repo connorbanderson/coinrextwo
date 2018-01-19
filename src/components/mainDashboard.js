@@ -129,7 +129,7 @@ class mainDashboard extends Component {
         'image': true,
         [`gradient${i}`]: true
       })
-      let isSelected = this.state.newPortfolioTheme == `gradient${i}` ? true : false
+      let isSelected = this.state.newPortfolioTheme === `gradient${i}` ? true : false
       let portfolioCheckMark = classNames({
         'checkMarkOn': isSelected,
         'checkMarkOff': !isSelected
@@ -156,7 +156,7 @@ class mainDashboard extends Component {
         'image': true,
         [`color${i}`]: true
       })
-      let isSelected = this.state.newPortfolioTheme == `color${i}` ? true : false
+      let isSelected = this.state.newPortfolioTheme === `color${i}` ? true : false
       let portfolioCheckMark = classNames({
         'checkMarkOn': isSelected,
         'checkMarkOff': !isSelected
@@ -183,7 +183,7 @@ class mainDashboard extends Component {
         'image': true,
         [`meme${i}`]: true
       })
-      let isSelected = this.state.newPortfolioTheme == `meme${i}` ? true : false
+      let isSelected = this.state.newPortfolioTheme === `meme${i}` ? true : false
       let portfolioCheckMark = classNames({
         'checkMarkOn': isSelected,
         'checkMarkOff': !isSelected
@@ -287,7 +287,10 @@ class mainDashboard extends Component {
               <Button onClick={()=>{this.handleNewPortfolio()}} key="submit" type="primary"> Create </Button>,
             ]}
           >
-          <Input placeholder="Name" onPressEnter={()=>{this.handleNewPortfolio()}} onChange={(e)=>{this.setState({newPortfolioName: e.target.value})}}/>
+            <div className='inline-flex minw100'>
+              <label className='pull-left pt5'>Name:</label>
+              <Input className='mr5 ml5' placeholder="Name" onPressEnter={()=>{this.handleNewPortfolio()}} onChange={(e)=>{this.setState({newPortfolioName: e.target.value})}}/>
+            </div>
           <Tabs defaultActiveKey="1">
             <TabPane tab="Gradients" key="1">
                 {this.gradientGenerator()}

@@ -1,5 +1,12 @@
 .fakeBody{
   background: white;
+
+  //font-family: 'Roboto', sans-serif;
+  //font-family: 'Text Me One', sans-serif;
+  //font-family: 'Assistant', sans-serif;
+  //font-family: 'Heebo', sans-serif;
+  //font-family: 'Raleway', sans-serif;
+  //font-family: 'Varela', sans-serif;
   .loadingScreen{
     background-color: white;
     height: 100vh;
@@ -13,8 +20,13 @@
       max-height: 80%;
     }
     h1{
-      font-size: 10vw;
+      position: absolute;
+      display: block;
+      font-family: 'Text Me One', sans-serif;
+      font-size: 70px;
       color: black;
+      bottom: 20%;
+      right: 30%;
     }
   }
 
