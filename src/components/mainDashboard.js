@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import classNames from 'classnames'
 import { portfolioListner, dbRef } from '../firebase'
 
-import { setPortfolios } from '../actions'
+import { setPortfolios, setSelectedPortfolio, setCoins } from '../actions'
 
 import Portfolio from './portfolio'
 
@@ -36,7 +36,7 @@ class mainDashboard extends Component {
       isNewPortfolioModalActive: false,
       newPortfolioTheme: null,
       newPortfolioName: null,
-      activePortfolio: 0
+      activePortfolio: null
     }
   }
 
@@ -45,22 +45,46 @@ class mainDashboard extends Component {
   componentDidMount(){
     this.generateCoinOptionList()
     dbRef.ref(`${this.props.updateID}/portfolios`).on('value', snap => {
-      let portfolioDataArray = []
+      let portfolioDataObject = {}
       snap.forEach(portfolio => {
         const portfolioObject = portfolio.val()
         const serverKey = portfolio.key
-        portfolioDataArray.push({portfolioObject, serverKey})
+        portfolioDataObject[serverKey] = portfolioObject
       })
-      this.props.setPortfolios(portfolioDataArray)
+      this.props.setPortfolios(portfolioDataObject)
     })
   }
 
-  getActivePortfolio = (portfolios) => {
-    if (portfolios === null || portfolios === undefined) return
+  getSelectedPortfolio = () => {
+    let thus = this
+    if (this.props.portfolios === null || this.props.portfolios === undefined) return
     else {
-      let keys = Object.keys(portfolios)
-      let firstPortfolio = portfolios[0].serverKey
-      this.setState({firstPortfolio})
+      const portfolios = this.props.portfolios
+      const keys = Object.keys(portfolios)
+      let activePortfolio = null
+      keys.forEach(function(key, i){
+         if (i === 0){
+           activePortfolio = key
+         }
+      })
+      this.props.setSelectedPortfolio(activePortfolio)
+      return activePortfolio
+    }
+  }
+
+  setInitialSelectedPortfolio = () => {
+    let thus = this
+    if (this.props.portfolios === null || this.props.portfolios === undefined) return
+    else {
+      const portfolios = this.props.portfolios
+      const keys = Object.keys(portfolios)
+      let activePortfolio = null
+      keys.forEach(function(key, i){
+         if (i === 0){
+           activePortfolio = key
+         }
+      })
+      this.setState({activePortfolio})
     }
   }
 
@@ -187,11 +211,20 @@ class mainDashboard extends Component {
       const keys = Object.keys(portfolios)
       let portfolioList = []
       keys.forEach(function(key, i){
-        const portfolio = portfolios[key].portfolioObject
+        const portfolio = portfolios[key]
         const name = portfolio.name
         let activePiece = null
         let active = false
-        if (i == thus.state.activePortfolio) {
+        if (thus.props.selectedPortfolio === undefined || thus.props.selectedPortfolio === null){
+          let activeKey = thus.getSelectedPortfolio()
+          if (key == activeKey) {
+            active = true
+            activePiece = (
+              <div className='activeTag' />
+            )
+          }
+        }
+        else if (key == thus.props.selectedPortfolio) {
           active = true
           activePiece = (
             <div className='activeTag' />
@@ -205,7 +238,7 @@ class mainDashboard extends Component {
 
         let portfolioJSX = (
           <div className='portfolio activePortfolio'>
-            <div onClick={()=>{thus.setState({activePortfolio: key})}} className={portfolioImage}>
+            <div onClick={()=>{ {thus.props.setSelectedPortfolio(key)} {thus.getCoins(key)} }} className={portfolioImage}>
               <h3>{name}</h3>
                 {activePiece}
             </div>
@@ -217,11 +250,24 @@ class mainDashboard extends Component {
     }
   }
 
+  getCoins = (newSelectedPortfolioKey) => {
+    dbRef.ref(`${this.props.updateID}/portfolios/${newSelectedPortfolioKey}/coins`).on('value', snap => {
+      let coinDataArray = []
+      snap.forEach(coin => {
+        const coinObject = coin.val()
+        console.log('COINLISTT - Snap looping Object....', coinObject);
+        const serverKey = coin.key
+        coinDataArray.push({coinObject, serverKey})
+      })
+      this.props.setCoins(coinDataArray)
+    })
+  }
+
+
   render(){
+
     return(
       <div className='dashboardComponent'>
-
-
         <div className='portfolioWrapper'>
           {this.portfolioGenerator()}
           <div className='portfolio' onClick={()=>{this.toggleNewPortfolioModal()}}>
@@ -266,13 +312,16 @@ function mapStateToProps(state){
   return {
     updateID: state.user.uid,
     liveData: state.liveData,
-    portfolios: state.portfolios
+    portfolios: state.portfolios,
+    selectedPortfolio: state.selectedPortfolio
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-      setPortfolios: (payload) => dispatch(setPortfolios(payload))
+      setPortfolios: (payload) => dispatch(setPortfolios(payload)),
+      setSelectedPortfolio: (payload) => dispatch(setSelectedPortfolio(payload)),
+      setCoins: (payload) => dispatch(setCoins(payload))
     }
 }
 

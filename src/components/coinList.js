@@ -16,10 +16,22 @@ class coinList extends Component {
   }
 
   componentDidMount(){
-    dbRef.ref(`${this.props.updateID}/portfolio`).on('value', snap => {
+    this.getCoins()
+  }
+
+//  componentWillReceiveProps(nextProps){
+//      this.getCoins()
+//  }
+
+
+
+  getCoins = () => {
+    console.log('COINLISTT - Calling Get Coins!!!', this.props.selectedPortfolio);
+    dbRef.ref(`${this.props.updateID}/portfolios/${this.props.selectedPortfolio}/coins`).on('value', snap => {
       let coinDataArray = []
       snap.forEach(coin => {
         const coinObject = coin.val()
+        console.log('COINLISTT - Snap looping Object....', coinObject);
         const serverKey = coin.key
         coinDataArray.push({coinObject, serverKey})
       })
@@ -29,12 +41,18 @@ class coinList extends Component {
 
   deleteCoin = (serverKey) =>{
     let thus = this
-    dbRef.ref(`${thus.props.updateID}/portfolio`).child(serverKey).remove()
+    dbRef.ref(`${this.props.updateID}/portfolios/${this.props.selectedPortfolio}/coins`).child(serverKey).remove()
   }
 
   round(value, decimals) {
    return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
    }
+
+  numberWithCommas = (x) => {
+      let parts = x.toString().split(".")
+      parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+      return parts.join(".")
+    }
 
 
   coinListGenerator = () => {
@@ -50,7 +68,7 @@ class coinList extends Component {
         console.log('Data is...', data);
         const id = data.id
         const coin = thus.props.liveData[id]
-        const currentValue = `$${thus.round( data.amountOwned*coin.price_cad , 0)}`
+        const currentValue = `$${  thus.numberWithCommas(thus.round( data.amountOwned*coin.price_cad , 0))   }`
         const roi = thus.round( ((currentValue - data.initialInvestment) / data.initialInvestment)*100, 0)
         const iconImage = {
           backgroundImage: `url(https://files.coinmarketcap.com/static/img/coins/32x32/${id}.png)`,
@@ -59,9 +77,10 @@ class coinList extends Component {
         }
 
         let profit = thus.round(((data.amountOwned*coin.price_cad)-data.initialInvestment), 0)
-        let profitText = profit >= 0 ? <div className='profitGainText'> + ${profit} </div> :<div className='profitLossText'> - ${profit} </div>
+        let negativeProfitText = Math.abs(thus.round(((data.amountOwned*coin.price_cad)-data.initialInvestment), 0))
+        let profitText = profit >= 0 ? <div className='profitGainText'> + ${thus.numberWithCommas(profit)} </div> :<div className='profitLossText'> - ${thus.numberWithCommas(negativeProfitText)} </div>
         let coinTag = (
-          <div key={key} className='coinCard'>
+          <div key={i} className='coinCard'>
             <i onClick={()=>{thus.deleteCoin(serverKey)}} className="fa fa-times" aria-hidden="true"></i>
             <div className='iconNameWrapper'>
               <div style={iconImage} />
@@ -92,12 +111,21 @@ class coinList extends Component {
 
 
   render(){
-    return(
-      <div className='coinList'>
-        <AddCoin />
-        {this.coinListGenerator()}
-      </div>
-    )
+    console.log('COINLISTT RENDERRR HERE!!', this.props.selectedPortfolio)
+    if (this.props.selectedPortfolio === null) {
+      return (
+        <div>
+          Loading...
+        </div>
+      )
+    } else {
+      return (
+        <div className='coinList'>
+          <AddCoin />
+          {this.coinListGenerator()}
+        </div>
+      )
+    }
   }
 }
 
@@ -108,7 +136,8 @@ function mapStateToProps(state){
   return {
     updateID,
     coins,
-    liveData: state.liveData
+    liveData: state.liveData,
+    selectedPortfolio: state.selectedPortfolio
   }
 }
 

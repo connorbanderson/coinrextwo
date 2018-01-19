@@ -14,9 +14,9 @@ export const firebaseApp = firebase.initializeApp(config)
 export const dbRef = firebase.database()
 export const coinRef = firebase.database().ref('portfolio')
 
-export const addCoinToPortfolio = (key, value) => {
+export const addCoinToPortfolio = (accountKey, portfolioKey, value) => {
   return new Promise((resolve, reject) => {
-  firebase.database().ref(`${key}/portfolio`)
+  firebase.database().ref(`${accountKey}/portfolios/${portfolioKey}/coins`)
     .push(value, error => error ? reject(error) : resolve())
   })
 }
