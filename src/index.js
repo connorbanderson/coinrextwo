@@ -12,7 +12,7 @@ import Login from './pages/login'
 import Signup from './pages/signup'
 import Dashboard from './pages/dashboard'
 
-import Loading from './components/loading'
+import LandingSection from './components/landingSection'
 
 
 import { logUser, logOut } from './actions'
@@ -47,11 +47,10 @@ ReactDOM.render(
     <MuiThemeProvider>
       <HashRouter>
         <Switch>
-          <Route exact path="/" component={Login} />
+          <Route exact path="/" component={LandingSection} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
           <Route path="/dashboard" component={Dashboard} />
-          <Route path="/loading" component={Loading} />
         </Switch>
       </HashRouter>
     </MuiThemeProvider>

@@ -9,12 +9,16 @@
   border-bottom-width: 1px;
   z-index: 10;
   background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   h1{
     text-transform: none !important;
     font-family: 'Montserrat', sans-serif;
-    padding-left: 10px;
     font-size: 45px;
     color: black;
+    position: absolute;
+    left: 50px;
   }
   .fa-user-o{
     position: absolute;
@@ -29,5 +33,12 @@
     height: 50px;
     position: absolute;
     left: 0px;
+  }
+  .rightSide{
+    position: absolute;
+    right: 35px;
+    .ant-btn{
+      margin-left: 15px;
+    }
   }
 }

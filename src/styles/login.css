@@ -5,12 +5,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background: url("../assets/swirl.png") repeat center center fixed !important;
   background: white; }
   .LoginPage .loginWrapper {
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 5%;
     padding: 70px;
-    height: auto; }
+    height: auto;
+    border-color: #e8e8e8;
+    border-style: solid;
+    border-width: 1px; }
     .LoginPage .loginWrapper input {
       max-width: 90%; }
     .LoginPage .loginWrapper h1 {

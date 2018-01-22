@@ -42,6 +42,14 @@ export const portfolioListner = (key) => {
 }
 
 
+export const editPortfolioCoin = (accountKey, portfolioKey, serverKey, updatedObject) => {
+  console.log('TRYING TO EDIT MOFO...', accountKey, portfolioKey, serverKey, updatedObject)
+  return new Promise((resolve, reject) => {
+  firebase.database().ref(`${accountKey}/portfolios/${portfolioKey}/coins`).child(serverKey).update(updatedObject, error => error ? reject(error) : resolve())
+  })
+}
+
+
 
 
 

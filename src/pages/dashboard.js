@@ -12,6 +12,8 @@ import CoinList from '../components/coinList'
 import Loading from '../components/loading'
 import TopBar from '../components/topBar'
 import SideBar from '../components/sideBar'
+import Landing from '../components/landingSection'
+
 
 import Market from '../components/market'
 import MainDashboard from '../components/mainDashboard'
@@ -121,6 +123,7 @@ class Dashboard extends Component {
             <Switch>
               <Route exact path="/dashboard" component={MainDashboard} />
               <Route path="/dashboard/market" component={Market} />
+              <Route path="/dashboard/landing" component={Landing} />
             </Switch>
           </div>
         </div>

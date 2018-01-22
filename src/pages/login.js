@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { firebaseApp } from '../firebase'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import Topbar from '../components/topBar.js'
+import Topbar from '../components/loginTopBar.js'
 
 class Login extends Component {
 

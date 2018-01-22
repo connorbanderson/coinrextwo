@@ -45,6 +45,8 @@
       border-width: 1px;
       background-color: #616161;
       color: #FAFAFA; }
+    .topBarLower .wrapper ::selection {
+      background: none !important; }
 
 @keyframes sidebarItemHover {
   0% {

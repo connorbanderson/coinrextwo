@@ -1,18 +1,154 @@
-.topBar{
+
+.topBarBackground{
+  animation: backgroundFadeIn .3s ease-in forwards;
+}
+
+.topBarTransparent{
+  animation: backgroundFadeOut .3s ease-out forwards;
+}
+
+.topBarLanding{
   position: fixed;
   top: 0px;
   left: 0px;
   height: 64px;
   width: 100%;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #D6CBEB;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 999;
   h1{
     position: absolute;
     left: 50px;
-    font-size: 30px;
+    text-transform: none !important;
+    font-family: 'Montserrat', sans-serif;
+    padding-left: 10px;
+    font-size: 45px;
     color: black;
-    margin: 0px;
+  }
+  .fa-user-o{
+    position: absolute;
+    right: 100px;
+    font-size: 25px;
+    cursor: pointer;
+    &:hover{
+
+    }
+  }
+  .headLogo{
+    height: 50px;
+    position: absolute;
+    left: 0px;
+  }
+  .rightSide{
+    position: absolute;
+    right: 35px;
+    .ant-btn{
+      margin-left: 15px;
+    }
+  }
+}
+
+.entireLandingPage{
+  position: absolute;
+  height: auto;
+  width: 100vw;
+  margin: 0px;
+  padding: 0px;
+  background: white;  /* fallback for old browsers */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .fullPage{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;  /* fallback for old browsers */
+
+    .landingLogo{
+      position: absolute;
+      height: 100%;
+      z-index: 3;
+    }
+
+    .loginCircle{
+      z-index: 99;
+      height: 100%;
+      width: auto;
+      border-radius: 50%;
+      background-color: black;
+    }
+
+    .landingBackground{
+      width: 100%;
+      height: 100%;
+      max-height: 100%;
+      margin: 0;
+      padding: 0;
+      background: url("/landingSVGbackground.svg") repeat center center fixed;
+      background-size: 200px 200px;
+      opacity: .2;
+      z-index: 2;
+    }
+
+    .purpleCircle{
+      position: absolute;
+      bottom: 60px;
+      height: 60px;
+      width: 60px;
+      border-radius: 50%;
+      background-color: #311B92;
+      z-index: 4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      .fa-angle-down{
+        font-size: 50px;
+        color: white;
+      }
+    }
+
+  }
+
+  .landingSection{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .landingSection2{
+    background-color: #F3E5F5;
+  }
+  .landingSection3{
+    background-color: #E1BEE7;
+  }
+  .landingSection4{
+    background-color: #CE93D8;
+  }
+}
+
+@keyframes backgroundFadeIn {
+  0%{
+    background-color: transparent;
+  }
+  100%{
+    background-color: white;
+  }
+}
+
+@keyframes backgroundFadeOut {
+  0%{
+    background-color: white;
+  }
+  100%{
+    background-color: transparent;
   }
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Input } from 'antd'
-import { firebaseApp } from '../firebase'
+import { firebaseApp, editPortfolioCoin } from '../firebase'
 import { connect } from 'react-redux'
 import { setCoins } from '../actions'
 import { dbRef } from '../firebase'
@@ -79,6 +79,14 @@ class coinList extends Component {
         let profit = thus.round(((data.amountOwned*coin.price_cad)-data.initialInvestment), 0)
         let negativeProfitText = Math.abs(thus.round(((data.amountOwned*coin.price_cad)-data.initialInvestment), 0))
         let profitText = profit >= 0 ? <div className='profitGainText'> + ${thus.numberWithCommas(profit)} </div> :<div className='profitLossText'> - ${thus.numberWithCommas(negativeProfitText)} </div>
+      let oldObject = {
+        amountOwned: data.amountOwned,
+        id: data.id,
+        initialInvestment: data.initialInvestment,
+        name: data.name,
+        symbol: data.symbol
+      }
+      console.log('1111 - OK THIS IS EDIT INFO NEEDED', thus.props.updateID, thus.props.selectedPortfolio, serverKey, oldObject)
         let coinTag = (
           <div key={i} className='coinCard'>
             <i onClick={()=>{thus.deleteCoin(serverKey)}} className="fa fa-times" aria-hidden="true"></i>
@@ -92,11 +100,11 @@ class coinList extends Component {
             </div>
             <div className='valueWrapperLeft'>
               <h2 className='owned'> Owned </h2>
-              <Input className="ownedInput" defaultValue={data.amountOwned} placeholder={data.amountOwned} onBlur={(e)=>{console.log(e.target.value)}} addonAfter={<div>{data.symbol}</div>} />
+              <Input className="ownedInput" defaultValue={data.amountOwned} placeholder={data.amountOwned} onBlur={(e)=>{thus.editCoinAmountOwed(thus.props.updateID, thus.props.selectedPortfolio, serverKey, oldObject, e.target.value)}} addonAfter={<div>{data.symbol}</div>} />
             </div>
             <div className='valueWrapperRight'>
               <h2 className='invested'> Invested </h2>
-              <Input className="investedInput" defaultValue={data.initialInvestment} placeholder={data.initialInvestment} onBlur={(e)=>{console.log(e.target.value)}} addonBefore={<div>$</div>} />
+              <Input className="investedInput" defaultValue={data.initialInvestment} placeholder={data.initialInvestment} onBlur={(e)=>{thus.editCoinAmountInvested(thus.props.updateID, thus.props.selectedPortfolio, serverKey, oldObject, e.target.value)}} addonBefore={<div>$</div>} />
             </div>
           </div>
         )
@@ -104,6 +112,16 @@ class coinList extends Component {
       })
     return coinTagArray
     }
+  }
+
+  editCoinAmountOwed(updateID, selectedPortfolio, serverKey, oldObject, newValue){
+    oldObject.amountOwned = newValue
+    editPortfolioCoin(updateID, selectedPortfolio, serverKey, oldObject)
+  }
+
+  editCoinAmountInvested(updateID, selectedPortfolio, serverKey, oldObject, newValue){
+    oldObject.initialInvestment = newValue
+    editPortfolioCoin(updateID, selectedPortfolio, serverKey, oldObject)
   }
 
 
