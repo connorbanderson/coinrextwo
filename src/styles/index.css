@@ -7,7 +7,14 @@ h1, h2, h3, h4, h5 {
 
 .msg {
   font-family: 'Text Me One', sans-serif;
-  font-size: 30px; }
+  font-size: 30px;
+  margin-bottom: 0px; }
+
+.msg-small {
+  font-family: 'Text Me One', sans-serif;
+  font-size: 18px;
+  margin: 0px;
+  padding: 0px; }
 
 .ant-tabs-nav-scroll {
   text-align: center; }
@@ -140,3 +147,35 @@ div .ant-modal-header {
 
 .block {
   display: block !important; }
+
+.sadRexWrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; }
+  .sadRexWrapper .sadRex {
+    width: 50%;
+    max-width: 500px;
+    height: auto; }
+
+.addFirstCoin {
+  margin-left: 15px; }
+  .addFirstCoin .flexWrap {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-direction: column;
+    width: 200px; }
+    .addFirstCoin .flexWrap h2 {
+      margin-left: 15px; }
+    .addFirstCoin .flexWrap .lookUpRex {
+      width: 120px; }
+
+.ant-tabs-tabpane {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap; }

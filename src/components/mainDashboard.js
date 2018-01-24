@@ -3,7 +3,7 @@ import { Input } from 'antd'
 import { addNewPortfolioToAccount } from '../firebase'
 import { connect } from 'react-redux'
 import classNames from 'classnames'
-import { portfolioListner, dbRef } from '../firebase'
+import { portfolioListner, setFBSelectedPortfolio, dbRef } from '../firebase'
 
 import { setPortfolios, setSelectedPortfolio, setCoins } from '../actions'
 
@@ -44,6 +44,11 @@ class mainDashboard extends Component {
 
   componentDidMount(){
     this.generateCoinOptionList()
+    this.getPortfolios()
+    this.getActivePortfolio()
+  }
+
+  getPortfolios(){
     dbRef.ref(`${this.props.updateID}/portfolios`).on('value', snap => {
       let portfolioDataObject = {}
       snap.forEach(portfolio => {
@@ -55,22 +60,14 @@ class mainDashboard extends Component {
     })
   }
 
-  getSelectedPortfolio = () => {
-    let thus = this
-    if (this.props.portfolios === null || this.props.portfolios === undefined) return
-    else {
-      const portfolios = this.props.portfolios
-      const keys = Object.keys(portfolios)
-      let activePortfolio = null
-      keys.forEach(function(key, i){
-         if (i === 0){
-           activePortfolio = key
-         }
-      })
-      this.props.setSelectedPortfolio(activePortfolio)
-      return activePortfolio
-    }
+  getActivePortfolio(){
+    dbRef.ref(`${this.props.updateID}/selectedportfolio`).on('value', snap => {
+      this.props.setSelectedPortfolio(snap.val())
+    })
   }
+
+
+
 
   setInitialSelectedPortfolio = () => {
     let thus = this
@@ -104,12 +101,13 @@ class mainDashboard extends Component {
     return optionList
   }
 
+
   toggleNewPortfolioModal = () => {
     this.setState({isNewPortfolioModalActive: !this.state.isNewPortfolioModalActive})
   }
 
+
   handleNewPortfolio = () => {
-    console.log('NEW PORTFOLIO YAYYY!!!', this.state.newPortfolioName, this.state.newPortfolioTheme)
     let theme = this.state.newPortfolioTheme === null ? 'gradient1' : this.state.newPortfolioTheme
     let name = this.state.newPortfolioName === null ? '' : this.state.newPortfolioName
     let coins = []
@@ -119,8 +117,10 @@ class mainDashboard extends Component {
       coins
     }
     addNewPortfolioToAccount(this.props.updateID, payload)
+    //
     this.setState({isNewPortfolioModalActive: false})
   }
+
 
   gradientGenerator = () => {
     let themeArray = []
@@ -139,6 +139,7 @@ class mainDashboard extends Component {
     return themeArray
   }
 
+
   gradientElement(portfolioImage, portfolioCheckMark, i){
     return(
       <div onClick={()=>this.setState({newPortfolioTheme: `gradient${i}`})} className='portfolioIcon'>
@@ -148,6 +149,7 @@ class mainDashboard extends Component {
       </div>
     )
   }
+
 
   colorGenerator = () => {
     let themeArray = []
@@ -166,6 +168,7 @@ class mainDashboard extends Component {
     return themeArray
   }
 
+
   colorElement(portfolioImage, portfolioCheckMark, i){
     return(
       <div onClick={()=>this.setState({newPortfolioTheme: `color${i}`})} className='portfolioIcon'>
@@ -175,6 +178,7 @@ class mainDashboard extends Component {
       </div>
     )
   }
+
 
   memeGenerator = () => {
     let themeArray = []
@@ -193,6 +197,7 @@ class mainDashboard extends Component {
     return themeArray
   }
 
+
   memeElement(portfolioImage, portfolioCheckMark, i){
     return(
       <div onClick={()=>this.setState({newPortfolioTheme: `meme${i}`})} className='portfolioIcon'>
@@ -203,10 +208,12 @@ class mainDashboard extends Component {
     )
   }
 
+
   portfolioGenerator = () => {
     let thus = this
     if (this.props.portfolios === null || this.props.portfolios === undefined) return
     else {
+      let didFindActivePortfolio = false
       const portfolios = this.props.portfolios
       const keys = Object.keys(portfolios)
       let portfolioList = []
@@ -216,9 +223,10 @@ class mainDashboard extends Component {
         let activePiece = null
         let active = false
         if (thus.props.selectedPortfolio === undefined || thus.props.selectedPortfolio === null){
-          let activeKey = thus.getSelectedPortfolio()
+          let activeKey = thus.props.selectedPortfolio
           if (key == activeKey) {
             active = true
+            didFindActivePortfolio = true
             activePiece = (
               <div className='activeTag' />
             )
@@ -226,6 +234,7 @@ class mainDashboard extends Component {
         }
         else if (key == thus.props.selectedPortfolio) {
           active = true
+          didFindActivePortfolio = true
           activePiece = (
             <div className='activeTag' />
           )
@@ -238,7 +247,7 @@ class mainDashboard extends Component {
 
         let portfolioJSX = (
           <div className='portfolio activePortfolio'>
-            <div onClick={()=>{ {thus.props.setSelectedPortfolio(key)} {thus.getCoins(key)} }} className={portfolioImage}>
+            <div onClick={()=>{  {setFBSelectedPortfolio(thus.props.updateID, key)} {thus.getCoins(key)} }} className={portfolioImage}>
               <h3>{name}</h3>
                 {activePiece}
             </div>
@@ -246,16 +255,17 @@ class mainDashboard extends Component {
         )
         portfolioList.push(portfolioJSX)
       })
+      console.log('6767 PLZ FKING WORK ... didFindActivePortfolio is...', didFindActivePortfolio);
       return portfolioList
     }
   }
+
 
   getCoins = (newSelectedPortfolioKey) => {
     dbRef.ref(`${this.props.updateID}/portfolios/${newSelectedPortfolioKey}/coins`).on('value', snap => {
       let coinDataArray = []
       snap.forEach(coin => {
         const coinObject = coin.val()
-        console.log('COINLISTT - Snap looping Object....', coinObject);
         const serverKey = coin.key
         coinDataArray.push({coinObject, serverKey})
       })
@@ -265,49 +275,128 @@ class mainDashboard extends Component {
 
 
   render(){
-
-    return(
-      <div className='dashboardComponent'>
-        <div className='portfolioWrapper'>
-          {this.portfolioGenerator()}
-          <div className='portfolio' onClick={()=>{this.toggleNewPortfolioModal()}}>
-            <div className='addPortfolio'>
-              <Icon className='plusIcon' type="plus" />
+    // IF THEY CRATE A PORTFOLIO THEY WILL AUTOMATICALLY SELECT IT!
+    // When deletetion is done, it needs to set the selected portfolio to the first portfolio....
+    // must write new function for that
+    if (this.props.selectedPortfolio === 'notFetched'){
+      console.log('LITT - notFetched', this.props.selectedPortfolio);
+      return(
+        <div />
+      )
+    }
+    else if (this.props.selectedPortfolio === null){
+      console.log('LITT - null', this.props.selectedPortfolio);
+      return (
+        <div className='dashboardComponent'>
+          <div className='portfolioWrapper'>
+            {this.portfolioGenerator()}
+            <div className='portfolio' onClick={()=>{this.toggleNewPortfolioModal()}}>
+              <div className='addPortfolioHelper'>
+                <Icon className='plusIcon' type="plus" />
+              </div>
             </div>
+
+
+            <Modal
+              className='addPortfolioModal'
+              visible={this.state.isNewPortfolioModalActive}
+              title="New Portfolio"
+              onOk={()=>{this.handleNewPortfolio()}}
+              onCancel={()=>{this.toggleNewPortfolioModal()}}
+              footer={[
+                <Button onClick={()=>{this.toggleNewPortfolioModal()}} key="back">Cancel</Button>,
+                <Button onClick={()=>{this.handleNewPortfolio()}} key="submit" type="primary"> Create </Button>,
+              ]}
+            >
+              <div className='inline-flex minw100'>
+                <label className='pull-left pt5'>Name:</label>
+                <Input className='mr5 ml5' placeholder="Name" onPressEnter={()=>{this.handleNewPortfolio()}} onChange={(e)=>{this.setState({newPortfolioName: e.target.value})}}/>
+              </div>
+            <Tabs defaultActiveKey="1">
+              <TabPane tab="Gradients" key="1">
+                  {this.gradientGenerator()}
+              </TabPane>
+              <TabPane tab="Solid Colors" key="2">
+                {this.colorGenerator()}
+              </TabPane>
+              <TabPane tab="Memes" key="3">
+                {this.memeGenerator()}
+              </TabPane>
+            </Tabs>
+          </Modal>
+
+
+        </div>
+        <Portfolio />
+      <div className='noPortfolioWrapper'>
+        <div className='addFirstCoin'>
+          <div className='flexWrap'>
+            <h2 className='msg'>Create a Portfolio. </h2>
+            <img className='lookUpRex' src='/lookUpRex.svg' />
           </div>
+        </div>
+      </div>
 
-          <Modal
-            className='addPortfolioModal'
-            visible={this.state.isNewPortfolioModalActive}
-            title="New Portfolio"
-            onOk={()=>{this.handleNewPortfolio()}}
-            onCancel={()=>{this.toggleNewPortfolioModal()}}
-            footer={[
-              <Button onClick={()=>{this.toggleNewPortfolioModal()}} key="back">Cancel</Button>,
-              <Button onClick={()=>{this.handleNewPortfolio()}} key="submit" type="primary"> Create </Button>,
-            ]}
-          >
-            <div className='inline-flex minw100'>
-              <label className='pull-left pt5'>Name:</label>
-              <Input className='mr5 ml5' placeholder="Name" onPressEnter={()=>{this.handleNewPortfolio()}} onChange={(e)=>{this.setState({newPortfolioName: e.target.value})}}/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+      )
+    } else {
+      console.log('LITT - SHOULD BE SOMETHING', this.props.selectedPortfolio);
+      return(
+        <div className='dashboardComponent'>
+          <div className='portfolioWrapper'>
+            {this.portfolioGenerator()}
+            <div className='portfolio' onClick={()=>{this.toggleNewPortfolioModal()}}>
+              <div className='addPortfolio'>
+                <Icon className='plusIcon' type="plus" />
+              </div>
             </div>
-          <Tabs defaultActiveKey="1">
-            <TabPane tab="Gradients" key="1">
-                {this.gradientGenerator()}
-            </TabPane>
-            <TabPane tab="Solid Colors" key="2">
-              {this.colorGenerator()}
-            </TabPane>
-            <TabPane tab="Memes" key="3">
-              {this.memeGenerator()}
-            </TabPane>
-          </Tabs>
-        </Modal>
-      </div>
-      <Portfolio selected={this.state.activePortfolio} />
 
-      </div>
-    )
+            <Modal
+              className='addPortfolioModal'
+              visible={this.state.isNewPortfolioModalActive}
+              title="New Portfolio"
+              onOk={()=>{this.handleNewPortfolio()}}
+              onCancel={()=>{this.toggleNewPortfolioModal()}}
+              footer={[
+                <Button onClick={()=>{this.toggleNewPortfolioModal()}} key="back">Cancel</Button>,
+                <Button onClick={()=>{this.handleNewPortfolio()}} key="submit" type="primary"> Create </Button>,
+              ]}
+            >
+              <div className='inline-flex minw100'>
+                <label className='pull-left pt5'>Name:</label>
+                <Input className='mr5 ml5' placeholder="Name" onPressEnter={()=>{this.handleNewPortfolio()}} onChange={(e)=>{this.setState({newPortfolioName: e.target.value})}}/>
+              </div>
+            <Tabs defaultActiveKey="1">
+              <TabPane tab="Gradients" key="1">
+                  {this.gradientGenerator()}
+              </TabPane>
+              <TabPane tab="Solid Colors" key="2">
+                {this.colorGenerator()}
+              </TabPane>
+              <TabPane tab="Memes" key="3">
+                {this.memeGenerator()}
+              </TabPane>
+            </Tabs>
+          </Modal>
+        </div>
+        <Portfolio />
+
+        </div>
+      )
+    }
   }
 }
 

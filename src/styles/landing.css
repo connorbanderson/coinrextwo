@@ -31,7 +31,8 @@
   .topBarLanding .headLogo {
     height: 50px;
     position: absolute;
-    left: 0px; }
+    left: 0px;
+    bottom: 5px; }
   .topBarLanding .rightSide {
     position: absolute;
     right: 35px; }

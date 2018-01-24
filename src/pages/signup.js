@@ -3,6 +3,8 @@ import '../styles/signup.css'
 import { Input, Button } from 'antd'
 import { Link } from 'react-router-dom'
 import { firebaseApp } from '../firebase'
+import { Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 
 class Sigunup extends Component {
@@ -28,22 +30,36 @@ class Sigunup extends Component {
   }
 
   render() {
-    return (
-      <div className="signUpPage text-center">
-        <div className='signupWrapper'>
-          <h1 className='m20'> Sign up </h1>
-          <Input className='m10' onChange={(e)=>{this.setState({email: e.target.value})}} placeholder="email" />
-          <Input className='m10' onChange={(e)=>{this.setState({password: e.target.value})}} type='password' placeholder="password" />
-          <small className='text-warning block'>{this.state.error.message}</small>
-          <Button className='mt20' onClick={()=>{this.createNewEmailUser()}}>Sign Up</Button>
-          <Link to='/login'>
-            <label  className='mt10 block'><small> Already Have An Account?</small></label>
-            <Button> Login</Button>
-          </Link>
+    if (this.props.authed){
+      return (
+        <Redirect to="/dashboard" push />
+      )
+    } else {
+      return (
+        <div className="signUpPage text-center">
+          <div className='signupWrapper'>
+            <h1 className='m20'> Sign up </h1>
+            <Input className='m10' onPressEnter={()=>{this.createNewEmailUser()}} onChange={(e)=>{this.setState({email: e.target.value})}} placeholder="email" />
+            <Input className='m10' onPressEnter={()=>{this.createNewEmailUser()}} onChange={(e)=>{this.setState({password: e.target.value})}} type='password' placeholder="password" />
+            <small className='text-warning block'>{this.state.error.message}</small>
+            <Button className='mt20' onClick={()=>{this.createNewEmailUser()}}>Sign Up</Button>
+            <Link to='/login'>
+              <label  className='mt10 block'><small> Already Have An Account?</small></label>
+              <Button> Login</Button>
+            </Link>
+          </div>
         </div>
-      </div>
-    )
+      )
+    }
   }
 }
 
-export default Sigunup
+function mapStateToProps(state){
+  const isAuthed = state.user.email == null ? false : true
+  return {
+    authed: isAuthed
+  }
+}
+
+
+export default connect(mapStateToProps, null)(Sigunup)

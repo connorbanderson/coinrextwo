@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import '../styles/loading.css'
 import TopBar from './loginTopBar'
-
+import { Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 class loadingSection extends Component {
 
@@ -26,35 +27,46 @@ class loadingSection extends Component {
   }
 
   render(){
-
-    return(
-      <div className='entireLandingPage'>
-
-        <div className='fullPage'>
-          <TopBar topBarShouldHaveBackground={this.state.topBarShouldHaveBackground}/>
-          <img className='landingLogo' src='/landingSVG.svg' />
-          <img className='landingBackground' />
-          <div className='purpleCircle'>
-            <i className="fa fa-angle-down" aria-hidden="true" />
+    if (this.props.authed){
+      return (
+        <Redirect to="/dashboard" push />
+      )
+    } else {
+      return(
+        <div className='entireLandingPage'>
+          <div className='fullPage'>
+            <TopBar topBarShouldHaveBackground={this.state.topBarShouldHaveBackground}/>
+            <img className='landingLogo' src='/landingSVG.svg' />
+            <img className='landingBackground' />
+            <div className='purpleCircle'>
+              <i className="fa fa-angle-down" aria-hidden="true" />
+            </div>
           </div>
+
+          <div className='landingSection landingSection2'>
+              Section 2
+          </div>
+
+          <div className='landingSection landingSection3'>
+              Section 3
+          </div>
+
+          <div className='landingSection landingSection4'>
+              Section 4
+          </div>
+
         </div>
-
-        <div className='landingSection landingSection2'>
-            Section 2
-        </div>
-
-        <div className='landingSection landingSection3'>
-            Section 3
-        </div>
-
-        <div className='landingSection landingSection4'>
-            Section 4
-        </div>
-
-      </div>
-
-    )
+      )
+    }
   }
 }
 
-export default loadingSection
+function mapStateToProps(state){
+  const isAuthed = state.user.email == null ? false : true
+  return {
+    authed: isAuthed
+  }
+}
+
+
+export default connect(mapStateToProps, null)(loadingSection)

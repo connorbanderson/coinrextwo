@@ -19,7 +19,9 @@ class loginTopBar extends Component {
     })
     return(
       <div className={topBarCustom}>
-        <img className='headLogo' src='/coinRexLogoHead2.svg' />
+        <Link to='/'>
+          <img className='headLogo' src='/coinRexLogoHead2.svg' />
+        </Link>
         <h1> CoinREX </h1>
         <div className='rightSide'>
           <Link to='/login'>

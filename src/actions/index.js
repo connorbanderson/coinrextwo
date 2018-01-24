@@ -46,7 +46,7 @@ export function setPortfolios(payload){
 }
 
 export function setSelectedPortfolio(payload){
-  console.log('COINLISTT - CALLING SET PORTFOLIO ACTION', payload);
+  console.log('999 - CALLING SET PORTFOLIO ACTION', payload);
   const action = {
     type: SET_SELECTED_PORTFOLIO,
     payload

@@ -1,5 +1,5 @@
 import * as firebase from 'firebase'
-import { setPortfolios } from '../actions'
+import { setPortfolios, setSelectedPortfolio } from '../actions'
 
 const config = {
   apiKey: "AIzaSyBkA6YfYvSAcAxHXquCj0EsR87FRsZm48c",
@@ -22,6 +22,7 @@ export const addCoinToPortfolio = (accountKey, portfolioKey, value) => {
 }
 
 export const addNewPortfolioToAccount = (key, value) => {
+  console.log('888 Adding New Portfolio to Account', value);
   return new Promise((resolve, reject) => {
   firebase.database().ref(`${key}/portfolios`)
     .push(value, error => error ? reject(error) : resolve())
@@ -30,6 +31,7 @@ export const addNewPortfolioToAccount = (key, value) => {
 
 
 export const portfolioListner = (key) => {
+  console.log('999 FIREBASE - portfolioListner ');
   dbRef.ref(`${key}/portfolios`).on('value', snap => {
     let coinDataArray = []
     snap.forEach(coin => {
@@ -41,6 +43,14 @@ export const portfolioListner = (key) => {
   })
 }
 
+export const lastPortfolioSelectedListner = (key) => {
+  console.log('999 FIREBASE - selectedPortfolioListner');
+  dbRef.ref(`${key}/selectedportfolio`).on('value', snap => {
+    setSelectedPortfolio(snap.val())
+  })
+}
+
+// Editing Information
 
 export const editPortfolioCoin = (accountKey, portfolioKey, serverKey, updatedObject) => {
   console.log('TRYING TO EDIT MOFO...', accountKey, portfolioKey, serverKey, updatedObject)
@@ -49,6 +59,12 @@ export const editPortfolioCoin = (accountKey, portfolioKey, serverKey, updatedOb
   })
 }
 
+export const setFBSelectedPortfolio = (accountKey, portfolioKey) => {
+  console.log('999 - Setting The NEW SELECTED PORTFOLIO!!', portfolioKey);
+  return new Promise((resolve, reject) => {
+  firebase.database().ref(`${accountKey}/selectedportfolio`).set(portfolioKey, error => error ? reject(error) : resolve())
+  })
+}
 
 
 

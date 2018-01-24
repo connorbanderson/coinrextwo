@@ -7,6 +7,8 @@ import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Topbar from '../components/loginTopBar.js'
 
+import Loading from '../components/loading'
+
 class Login extends Component {
 
   constructor(props){
@@ -16,8 +18,13 @@ class Login extends Component {
       password: '',
       error: {
         message: ''
-      }
+      },
+      isLoading: true
     }
+  }
+
+  componentDidMount(){
+    setTimeout(() => {this.setState({ isLoading: false }) }, 1000)
   }
 
   loginUser = () =>{
@@ -40,7 +47,7 @@ class Login extends Component {
           <div className='loginWrapper'>
             <h1 className='m20'> Login </h1>
             <div className='block'>
-              <Input className='m10' eonPressEnter={()=>{this.loginUser()}} onChange={(e)=>{this.setState({email: e.target.value})}} placeholder="email" required />
+              <Input className='m10' onPressEnter={()=>{this.loginUser()}} onChange={(e)=>{this.setState({email: e.target.value})}} placeholder="email" required />
               <Input className='m10' onPressEnter={()=>{this.loginUser()}} onChange={(e)=>{this.setState({password: e.target.value})}} type='password' placeholder="password" required/>
             </div>
             <small className='text-warning block'>{this.state.error.message}</small>
@@ -50,6 +57,8 @@ class Login extends Component {
               <Button>Sign Up</Button>
             </Link>
           </div>
+          <img className='threeRex' src='/threeRex.svg'></img>
+          <img className='landingBackground' />
         </div>
       )
     }
@@ -57,7 +66,6 @@ class Login extends Component {
 }
 
 function mapStateToProps(state){
-  console.log('Login MapStateToProps. State is...', state)
   const isAuthed = state.user.email == null ? false : true
   return {
     authed: isAuthed

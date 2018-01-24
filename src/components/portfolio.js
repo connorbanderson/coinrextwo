@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { Input } from 'antd'
-import { firebaseApp, dbRef } from '../firebase'
+import { firebaseApp, dbRef, setFBSelectedPortfolio } from '../firebase'
 import { connect } from 'react-redux'
 
 // Component Imports
@@ -15,7 +15,7 @@ import { setCoins } from '../actions'
 import '../styles/portfolio.css'
 
 
-const TabPane = Tabs.TabPane;
+const TabPane = Tabs.TabPane
 
 class portfolio extends Component {
 
@@ -27,13 +27,26 @@ class portfolio extends Component {
   }
 
   componentDidMount(){
+    this.getCoins()
   }
 
 //  componentWillReceiveProps(nextProps){
 //      this.getCoins()
 //  }
 
-
+  getCoins = () => {
+    console.log('COINLISTT - Calling Get Coins!!!', this.props.selectedPortfolio)
+    dbRef.ref(`${this.props.updateID}/portfolios/${this.props.selectedPortfolio}/coins`).on('value', snap => {
+      let coinDataArray = []
+      snap.forEach(coin => {
+        const coinObject = coin.val()
+        console.log('COINLISTT - Snap looping Object....', coinObject)
+        const serverKey = coin.key
+        coinDataArray.push({coinObject, serverKey})
+      })
+      this.props.setCoins(coinDataArray)
+    })
+  }
 
 
 
@@ -113,22 +126,46 @@ class portfolio extends Component {
       }
 
     round(value, decimals) {
-     return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+     return Number(Math.round(value+'e'+decimals)+'e-'+decimals)
      }
 
-  render(){
+    isEmpty(obj) {
+    for(var key in obj) {
+      if(obj.hasOwnProperty(key))
+          return false
+        }
+        return true
+      }
 
-    console.log('UH SDfjksadlkfaklsdjfasdlkjf', this.props.coins)
-    if (this.props.selectedPortfolio === undefined || this.props.selectedPortfolio === null){
+  render(){
+    // under
+    console.log('Heyboiitscold', )
+    // First Login case
+    // 1. No selected Portfolio
+    // 2. Portfolios is empty -> they have never made one
+    if (this.props.selectedPortfolio === null && this.isEmpty(this.props.portfolios)){
       return(
-        <div> </div>
+        <div />
       )
-    } else {
+    }
+    if (this.props.selectedPortfolio === null && !this.isEmpty(this.props.portfolios)){
+      let keys = Object.keys(this.props.portfolios)
+      console.log('Heyboiitscold - This should be the single portfolio', keys[0])
+      setFBSelectedPortfolio(this.props.updateID, keys[0])
+      return(
+        <div>
+          JUSTTTT MADE 1
+        </div>
+      )
+    }
+    else {
       const graphHeight= (window.innerHeight * .8) - 180
       const graphWidth= window.innerWidth * .90
       let portfolioData = this.portfolioDataGenerator()
 
       const portfolioValue = this.portfolioValueGenerator()
+      console.log('777 -- portfolioValue is', portfolioValue)
+      console.log('777 -- props are', this.props)
 
       // const portfolioData = [
       //   {name: this.props.coins['ETH'].symbol, uv: this.props.coins['ETH'].price*8.3, fullname: this.props.coins['ETH'].name},
@@ -150,61 +187,86 @@ class portfolio extends Component {
       const twentyFourHourPercentageDOM = ((portfolioValue == undefined) || (portfolioValue == null))  ? '' : portfolioValue.twentyFourHourPercentage
       const sevenDayValueDOM = ((portfolioValue == undefined) || (portfolioValue == null))  ? '' : portfolioValue.sevenDayValue
       const sevenDayPercentageDOM = ((portfolioValue == undefined) || (portfolioValue == null))  ? '' : portfolioValue.sevenDayPercentage
-      if (portfolioData == undefined){
+      if (portfolioData == undefined || this.props.coins.constructor !== Array){
         return(
           <div></div>
         )
       } else {
-        return(
-          <div className='portfolioInnerPage'>
-            <Tabs defaultActiveKey="1">
-              <TabPane className='tab' tab={<span><Icon type="dashboard" />Dashboard</span>} key="0">
+        const addFirstCoinJSX = (
+          <div className='addFirstCoin'>
+            <div className='flexWrap'>
+              <h2 className='msg'>Add a Coin. </h2>
+              <img className='lookUpRex' src='/lookUpRex.svg' />
+            </div>
+          </div>
+        )
+        const sadRex = (
+          <div className='sadRexWrapper'>
+            <img className='sadRex' src='/sadRex.svg' />
+            <h2 className='msg'> Please add at least one coin.</h2>
+            <h2 className='msg-small'> (╯︵╰) </h2>
+          </div>
 
-                <div className='portfolioValueWrapper'>
-                  <span className='mainValue'>${totalValueDOM}</span>
-                  <div className='timeWrapper'>
-                    <div className='wrapper'>
-                      <div className='timeSpan'> 1H </div>
-                        <div className='valueWrapper'>
-                          <div className='value'> ${oneHourValueDOM} </div>
-                          <div className='value'> {oneHourPercentageDOM}% </div>
-                        </div>
+        )
+        const graphJSX = (
+          <div>
+            <div className='portfolioValueWrapper'>
+              <span className='mainValue'>${totalValueDOM}</span>
+              <div className='timeWrapper'>
+                <div className='wrapper'>
+                  <div className='timeSpan'> 1H </div>
+                    <div className='valueWrapper'>
+                      <div className='value'> ${oneHourValueDOM} </div>
+                      <div className='value'> {oneHourPercentageDOM}% </div>
                     </div>
-                    <div className='wrapper'>
-                      <div className='timeSpan'> 24H </div>
-                        <div className='valueWrapper'>
-                          <div className='value'> ${twentyFourHourValueDOM} </div>
-                          <div className='value'> {twentyFourHourPercentageDOM}% </div>
-                        </div>
+                </div>
+                <div className='wrapper'>
+                  <div className='timeSpan'> 24H </div>
+                    <div className='valueWrapper'>
+                      <div className='value'> ${twentyFourHourValueDOM} </div>
+                      <div className='value'> {twentyFourHourPercentageDOM}% </div>
                     </div>
-                    <div className='wrapper'>
-                      <div className='timeSpan'> 7D </div>
-                      <div className='valueWrapper'>
-                        <div className='value'> ${sevenDayValueDOM} </div>
-                        <div className='value'> {sevenDayPercentageDOM}% </div>
-                      </div>
-                    </div>
+                </div>
+                <div className='wrapper'>
+                  <div className='timeSpan'> 7D </div>
+                  <div className='valueWrapper'>
+                    <div className='value'> ${sevenDayValueDOM} </div>
+                    <div className='value'> {sevenDayPercentageDOM}% </div>
                   </div>
                 </div>
+              </div>
+            </div>
 
-                <BarChart width={graphWidth} height={graphHeight} data={portfolioData}>
-                  <XAxis dataKey="name" style={{fontSize: '8px'}}/>
-                  <YAxis/>
-                  <CartesianGrid strokeDasharray="3 3"/>
-                  <Tooltip/>
-                    <Bar dataKey="starting" stackId="a" fill="#212121" />
-                    <Bar dataKey="profit" stackId="a" >
-                      {
-                        portfolioData.map((entry, index) => {
-                          const color = entry.profit >= 0 ? '#8BC34A' : '#D50000'
-                          return <Cell fill={color} />;
-                        })
-                      }
-                    </Bar>
-                </BarChart>
+            <BarChart width={graphWidth} height={graphHeight} data={portfolioData}>
+              <XAxis dataKey="name" style={{fontSize: '8px'}}/>
+              <YAxis/>
+              <CartesianGrid strokeDasharray="3 3"/>
+              <Tooltip/>
+                <Bar dataKey="starting" stackId="a" fill="#212121" />
+                <Bar dataKey="profit" stackId="a" >
+                  {
+                    portfolioData.map((entry, index) => {
+                      const color = entry.profit >= 0 ? '#8BC34A' : '#D50000'
+                      return <Cell fill={color} />
+                    })
+                  }
+                </Bar>
+            </BarChart>
+          </div>
+
+        )
+        let tabInitialLoadValue = this.props.coins.length === 0 ? '1' : '0'
+        let addFirstCoinHelper = this.props.coins.length === 0 ? addFirstCoinJSX : null
+        let portfoliioGraph = this.props.coins.length === 0 ? sadRex : graphJSX
+        return(
+          <div className='portfolioInnerPage'>
+            <Tabs defaultActiveKey={tabInitialLoadValue}>
+              <TabPane className='tab' tab={<span><Icon type="dashboard" />Dashboard</span>} key="0">
+              {portfoliioGraph}
               </TabPane>
               <TabPane className='tab' tab={<span><Icon type="edit" />Manage</span>} key="1">
                 <CoinList />
+                {addFirstCoinHelper}
               </TabPane>
             </Tabs>
           </div>
@@ -219,7 +281,8 @@ function mapStateToProps(state){
     updateID: state.user.uid,
     liveData: state.liveData,
     selectedPortfolio: state.selectedPortfolio,
-    coins: state.coins
+    coins: state.coins,
+    portfolios: state.portfolios
   }
 }
 

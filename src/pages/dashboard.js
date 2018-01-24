@@ -35,20 +35,20 @@ class Dashboard extends Component {
       newCoinInitialInvestment: null,
       screenSizeTooSmall: true,
       height: 500,
-      width: 500
+      width: 500,
+      isLoading: true
     }
   }
 
   signOut = () =>{
-    console.log('Signout being calllledddd')
     firebaseApp.auth().signOut()
   }
 
   componentDidMount(){
     this.getLiveData()
-    setTimeout(function(){this.setState({loading: false})}.bind(this),1500)
     this.updateDimensions()
     window.addEventListener("resize", this.updateDimensions.bind(this))
+    setTimeout(() => {this.setState({ isLoading: false }) }, 1000)
   }
 
   componentWillUnmount() {
@@ -74,8 +74,15 @@ class Dashboard extends Component {
   }
 
 
+
+
   render() {
-    if (!this.props.authed){
+    if (this.state.isLoading){
+      return (
+        <Loading />
+      )
+    }
+    else if (!this.props.authed){
       return (
         <Redirect to="/login" push />
       )
@@ -110,12 +117,16 @@ class Dashboard extends Component {
           </div>
       )
     }
-    else if (this.state.loading || (this.props.liveData === null)){
+    else if (this.props.liveData === null){
+      console.log('888 THIS IS LOADING PAGE OF DASHBOARD. Live DATA', this.props.liveData);
+      console.log('888 ', this.props.portfolios);
+
       return(
         <Loading />
       )
     }
     else {
+      console.log('888 ALL DATA SHOULD BE HERE!!! LOADING DASHBOARD', this.props);
       return (
         <div className="dashboardPage themeBackgroundOne">
           <TopBar logout={()=>this.signOut()}/>
@@ -140,7 +151,8 @@ function mapStateToProps(state, ownProps){
   return {
     authed: isAuthed,
     liveData: state.liveData,
-    user: state.user
+    user: state.user,
+    portfolios: state.portfolios
   }
 }
 
